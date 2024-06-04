@@ -12,6 +12,44 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+#search {
+  transform-origin: left;
+  animation: open-search 0.5s ease-in-out forwards;
+}
+@keyframes open-search {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+#searchMobile {
+  transform-origin: left;
+  animation: open-searchMobile 0.5s ease-in-out forwards;
+}
+@keyframes open-searchMobile {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+#navbar {
+  transform-origin: top;
+  animation: open-navbar 0.5s ease-in-out forwards;
+}
+@keyframes open-navbar {
+  0% {
+    transform: scaleY(0);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
 
 .App-header {
   background-color: #282c34;

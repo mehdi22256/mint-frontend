@@ -5,11 +5,13 @@ module.exports = {
     fontFamily: {
       tajawal: ["Tajawal", "sans-serif"],
     },
-    colors: {
-      primary: "#377553",
-      secondary: "#edf3f0",
+
+    extend: {
+      colors: {
+        primary: "#377553",
+        secondary: "#edf3f0",
+      },
     },
-    extend: {},
   },
   plugins: [],
 };

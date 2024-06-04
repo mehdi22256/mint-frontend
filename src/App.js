@@ -5,9 +5,9 @@ import NavBar from "./components/NavBar";
 function App() {
   return (
     <div>
-      <Footer></Footer>
       <NavBar />
       <Routes></Routes>
+      <Footer></Footer>
     </div>
   );
 }

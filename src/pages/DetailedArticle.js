@@ -2,26 +2,28 @@ import d3 from "../assets/d3.png";
 import Comment from "../components/Comment";
 const DetailedArticle = () => {
   return (
-    <div className="m-auto py-5 px-5 lg:px-32">
-      <div className="flex items-center justify-center m-auto">
+    <div className="m-auto pt-5 lg:px-32">
+      <div className="flex items-center justify-center m-auto ">
         <img
-          className="w-screen lg:w-[1100px]"
+          className="w-screen lg:w-[85%] lg:h-[450px]"
           loading="lazy"
           src={d3}
           alt="article"
         />
       </div>
-      <div className="flex flex-col justify-center items-center pt-5 lg:pt-20 lg:px-10">
-        <p className="font-bold font-serif text-2xl lg:text-5xl leading-relaxed text-center">
+      <div className="flex flex-col justify-center items-center px-5 lg:px-10">
+        <div className="flex flex-row w-max gap-x-2 lg:gap-x-3 ">
+          <p className="text-slate-400 text-sm lg:text-xl ">د.حمزة الحامزي</p>
+          <p className="text-slate-400 text-sm lg:text-xl ">.</p>
+          <p className="text-slate-400 text-sm lg:text-xl ">1يناير 2024</p>
+          <p className="text-slate-400 text-sm lg:text-xl ">
+            وقت القراءة: 10 دقايق
+          </p>
+        </div>
+        <p className="font-bold text-right font-serif text-2xl lg:text-5xl pt-5 leading-relaxed">
           فيتامين دي 3: الفوائد الصحية والمصادر وأهمية الحفاظ على مستوياته
         </p>
-        <div className="flex flex-row w-max gap-x-2 lg:gap-x-3 pt-5">
-          <p className="text-slate-400 text-sm lg:text-xl">د.حمزة الحامزي</p>
-          <p className="text-slate-400 text-sm lg:text-xl">.</p>
-          <p className="text-slate-400 text-sm lg:text-xl">1يناير 2024</p>
-          <p className="text-slate-400 text-sm lg:text-xl">10 دقايق</p>
-        </div>
-        <p className="text-xl pt-5 lg:pt-10 leading-loose font-serif">
+        <p className="text-xl pt-5 lg:pt-10 leading-loose font-serif text-justify">
           فيتامين دي 3 (D3)، المعروف أيضًا باسم كوليكالسيفيرول، هو أحد
           الفيتامينات الأساسية التي تلعب دورًا حيويًا في الحفاظ على الصحة
           العامة. وفيما يلي نظرة عامة على فوائده الصحية، مصادره، وأهمية الحفاظ

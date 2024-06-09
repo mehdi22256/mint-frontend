@@ -3,14 +3,10 @@ import Comment from "../components/Comment";
 const DetailedArticle = () => {
   return (
     <div className="m-auto pt-5 lg:px-32">
-      <div className="flex items-center justify-center m-auto ">
-        <img
-          className="w-screen lg:w-[85%] lg:h-[450px]"
-          loading="lazy"
-          src={d3}
-          alt="article"
-        />
-      </div>
+      <div
+        className="flex items-center justify-center m-auto bg-cover bg-center bg-no-repeat h-[480px]"
+        style={{ backgroundImage: `url(${d3})` }}
+      ></div>
       <div className="flex flex-col justify-center items-center px-5 lg:px-10">
         <div className="flex flex-row w-max gap-x-2 lg:gap-x-3 ">
           <p className="text-slate-400 text-sm lg:text-xl ">د.حمزة الحامزي</p>

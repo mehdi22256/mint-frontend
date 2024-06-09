@@ -38,7 +38,7 @@ const Comment = () => {
                 <img className="w-14 lg:w-14" src={mr} alt="mr" />
                 <textarea className="resize-none rounded-lg w-64 md:w-[690px] lg:w-96 xl:w-[1200px] pr-2 pt-1 bg-secondary placeholder-primary" rows={2} placeholder="اكتب تعليقك..." name="comment" id="comment"/>
                 </div>
-                <button className="bg-primary text-white w-64 md:w-[690px] lg:w-96  xl:w-[1200px] h-10 hover:bg-green-800 rounded-lg mr-[65px] xl:mr-[75px]">نشر</button>
+                <button className="bg-primary text-white w-64 md:w-[690px] lg:w-96 xl:w-[1200px] h-10 hover:bg-green-800 rounded-lg mr-[65px] xl:mr-[65px]">نشر</button>
             </form>
         </div>
      </div>

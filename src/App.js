@@ -10,12 +10,11 @@ import Articles from "./pages/Articles";
 function App() {
   return (
     <div>
-      <Pharamacypage />
-      <Routes></Routes>
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/articles" element={<Articles />} />
+        <Route path="/pharmacies" element={<Pharamacypage />} />
         <Route path="/articles/:id" element={<DetailedArticle />} />
         <Route path="/signin" element={<SignIn />} />
       </Routes>

@@ -7,7 +7,7 @@ const NavBar = () => {
   const [Searching, setSearching] = useState("");
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
   return (
-    <div className="w-auto h-14 lg:h-20 bg-primary lg:px-16">
+    <div className="w-auto h-14 lg:h-20 bg-primary lg:px-16 sticky top-0 z-50">
       <nav className="hidden lg:flex text-white">
         <ul className="flex flex-row-reverse justify-start items-center space-x-20 p-1 text-xl">
           <li className="w-max h-10 px-2 pt-1 rounded-lg font-semibold bg-white text-primary cursor-pointer hover:bg-green-800 hover:text-secondary">

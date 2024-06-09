@@ -24,7 +24,7 @@ const SignIn = () => {
               placeholder="كلمة المرور"
               type="password"
             />
-            <div className="flex flex-row justify-between gap-32 mb-8">
+            <div className="flex flex-row justify-between items-center gap-32 mb-8">
               <p className="text-primary hover:underline cursor-pointer">
                 نسيت كلمة المرور؟
               </p>

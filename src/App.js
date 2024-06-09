@@ -2,6 +2,8 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Footer from "./components/Footer";
 import NavBar from "./components/NavBar";
+import Doctors from "./pages/Doctors";
+import Pharmacy from "./pages/Pharmacy";
 import Pharamacypage from "./components/Pharamacypage";
 import DetailedArticle from "./pages/DetailedArticle";
 import SignIn from "./pages/SignIn";

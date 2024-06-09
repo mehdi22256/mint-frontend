@@ -10,8 +10,6 @@ import Articles from "./pages/Articles";
 function App() {
   return (
     <div>
-      <Pharamacypage />
-      <Routes></Routes>
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />

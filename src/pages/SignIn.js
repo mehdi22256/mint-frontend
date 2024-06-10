@@ -1,7 +1,14 @@
 import undraw from "../assets/undraw_medicine.svg";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 const SignIn = () => {
   const [isRememberMe, setIsRememberMe] = useState(false);
+
+  const navigator = useNavigate();
+  const handleSignup = (e) => {
+    e.preventDefault();
+    navigator("/signup");
+  };
 
   return (
     <div className="flex flex-col lg:flex-row-reverse lg:p-7 lg:px-10 lg:gap-10">
@@ -49,7 +56,10 @@ const SignIn = () => {
               <p>او</p>
               <hr className="h-[1px] w-28 lg:w-40 text-black bg-black" />
             </div>
-            <button className="text-primary bg-white border border-primary w-72 lg:w-full h-12 rounded-sm hover:bg-secondary mb-5">
+            <button
+              className="text-primary bg-white border border-primary w-72 lg:w-full h-12 rounded-sm hover:bg-secondary mb-5"
+              onClick={handleSignup}
+            >
               انشاء حساب
             </button>
           </form>

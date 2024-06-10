@@ -6,12 +6,12 @@ function Doctors() {
   return (
     <div className="flex  flex-col gap-5  ">
       <div className="flex  flex-wrap gap-10 justify-center md:justify-evenly md:items-center md:gap-0 md:w-[100%]   pt-10">
-        <div className=" flex  items-center    h-12  w-[350px] md:w-[400px] md:mr-5 ">
-          <button className=" bg-primary rounded-r-lg border-y-2 border-r-2 flex justify-center items-center w-[10%] h-10">
+        <div className=" flex  items-center   h-12  w-[350px] md:w-[400px] md:mr-5 ">
+          <button className=" bg-primary rounded-r-lg border-y-2 border-r-2 flex justify-center items-center w-[10%] h-12">
             <CiSearch className=" text-white" />
           </button>
           <input
-            className="  rounded-l-lg h-10 border-y-2 border-l-2 w-[100%] "
+            className="  rounded-l-lg h-12  border-y-2 border-l-2 w-[100%] "
             type="search"
             placeholder="ابحث عن اسم الدكتور "
           />

@@ -20,7 +20,7 @@ const NavBar = () => {
             <Link to={"/articles"}>المقالات</Link>
           </li>
           <li className="cursor-pointer hover:underline">
-            <Link to={"/pharmacies"}>الصيدليات</Link>
+            <Link to={"/Pharmacy"}>الصيدليات</Link>
           </li>
           <li className="cursor-pointer hover:underline">
             <Link to={"/doctors"}>الاطباء</Link>
@@ -123,7 +123,7 @@ const NavBar = () => {
                 onClick={() => setIsBurgerOpen(!isBurgerOpen)}
                 className="cursor-pointer hover:bg-primary hover:text-black font-semibold py-5 w-screen "
               >
-                <Link to={"/pharmacies"}>الصيدليات</Link>
+                <Link to={"/Pharmacy"}>الصيدليات</Link>
               </li>
 
               <li

@@ -4,11 +4,10 @@ import Footer from "./components/Footer";
 import NavBar from "./components/NavBar";
 import Doctors from "./pages/Doctors";
 import Pharmacy from "./pages/Pharmacy";
-import Pharamacypage from "./components/Pharamacypage";
-import DetailedArticle from "./pages/DetailedArticle";
 import SignIn from "./pages/SignIn";
 import Home from "./pages/Home";
 import Articles from "./pages/Articles";
+import About from "./pages/About";
 function App() {
   return (
     <div>
@@ -16,8 +15,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/articles" element={<Articles />} />
-        <Route path="/pharmacies" element={<Pharamacypage />} />
-        <Route path="/articles/:id" element={<DetailedArticle />} />
+        <Route path="/Pharmacy" element={<Pharmacy />} />
+        <Route path="/doctors" element={<Doctors />} />
+        <Route path="/about" element={<About />} />
         <Route path="/signin" element={<SignIn />} />
       </Routes>
       <Footer />

@@ -7,7 +7,6 @@ import About from "./pages/About";
 import SignUp from "./pages/SignUp";
 import { Provider } from "react-redux";
 import Articles from "./pages/Articles";
-import Doctors from "./pages/Doctors";
 
 import Home from "./pages/Home";
 import Signin from "./pages/SignIn";

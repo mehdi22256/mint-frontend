@@ -23,7 +23,7 @@ const NavBar = () => {
             <Link to={"/pharmacies"}>الصيدليات</Link>
           </li>
           <li className="cursor-pointer hover:underline">
-            <Link to={"/doctors"}>الاطباء</Link>
+            <Link to={"/doctor"}>الاطباء</Link>
           </li>
           <li className="cursor-pointer">
             <form className="relative">

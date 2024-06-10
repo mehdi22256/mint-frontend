@@ -13,6 +13,7 @@ import store from "./store/store";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getAllBlog } from "./store/blog/blogSlice";
+import Doctors from "./pages/Doctors";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ function App() {
           <Route path="/pharmacies" element={<Pharamacypage />} />
           <Route path="/articles/:id" element={<DetailedArticle />} />
           <Route path="/signin" element={<Signin />} />
+          <Route path="/doctor" element={<Doctors />} />
           <Route path="/signup" element={<SignUp />} />
         </Routes>
         <Footer />

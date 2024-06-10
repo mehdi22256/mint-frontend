@@ -5,6 +5,7 @@ import xx from "../assets/12.png";
 import jasem from "../assets/doctor-j.jpg";
 function Doctors() {
   return (
+<<<<<<< HEAD
     <div className="flex flex-col justify-between mx-10 ">
       <div className="md:flex md:justify-around md:items-center  md:w-[100%]">
         <div className=" flex justify-center items-center  w-[100%] h-16  md:w-[48%]">
@@ -13,15 +14,25 @@ function Doctors() {
           </button>
           <input
             className="  rounded-l-lg h-10 border-y-2 border-l-2 w-[70%] md:w-[60%] placeholder:px-6 "
+=======
+    <div className="flex  flex-col gap-5  ">
+      <div className="flex  flex-wrap gap-10 justify-center md:justify-evenly md:items-center md:gap-0 md:w-[100%]   pt-10">
+        <div className=" flex  items-center   h-12  w-[350px] md:w-[400px] md:mr-5 ">
+          <button className=" bg-primary rounded-r-lg border-y-2 border-r-2 flex justify-center items-center w-[10%] h-12">
+            <CiSearch className=" text-white" />
+          </button>
+          <input
+            className="  rounded-l-lg h-12  border-y-2 border-l-2 w-[100%] "
+>>>>>>> e12da63c6f5cec57042bbf54a23f061f90c62599
             type="search"
             placeholder="ابحث عن اسم الدكتور "
           />
         </div>
-        <div className="flex justify-evenly md:justify-evenly  md:w-[40%] ">
-          <div className=" md:w-[30%] ">
+        <div className="flex  justify-between  w-[90%] md:w-[42%] ">
+          <div className="  w-[45%] ">
             <select
               name="المحافظة"
-              className=" w-24 md:w-[100%] md:h-10 border-2 rounded-lg  "
+              className="w-[100%] md:h-10 border-2 rounded-lg  "
             >
               <option value="المحافظة" disabled>
                 {" "}
@@ -38,10 +49,10 @@ function Doctors() {
               <option value="الفلوجة">الفلوجة</option>
             </select>
           </div>
-          <div className="md:w-[30%] ">
+          <div className=" w-[45%] ">
             <select
               name="المحافظة"
-              className="w-24  md:w-[100%] md:h-10 border-2 rounded-lg  "
+              className="w-[100%] md:h-10 border-2 rounded-lg  "
             >
               <option value="التخصص" disabled>
                 {" "}

@@ -2,25 +2,39 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Footer from "./components/Footer";
 import NavBar from "./components/NavBar";
-import Doctors from "./pages/Doctors";
-import Pharmacy from "./pages/Pharmacy";
-import SignIn from "./pages/SignIn";
-import Home from "./pages/Home";
-import Articles from "./pages/Articles";
 import About from "./pages/About";
+
+import SignUp from "./pages/SignUp";
+import { Provider } from "react-redux";
+import Articles from "./pages/Articles";
+import Pharamacypage from "./pages/Pharmacy";
+import DetailedArticle from "./pages/DetailedArticle";
+import Home from "./pages/Home";
+import Signin from "./pages/SignIn";
+import store from "./store/store";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getAllBlog } from "./store/blog/blogSlice";
+
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllBlog());
+  }, []);
   return (
     <div>
-      <NavBar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/articles" element={<Articles />} />
-        <Route path="/Pharmacy" element={<Pharmacy />} />
-        <Route path="/doctors" element={<Doctors />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/signin" element={<SignIn />} />
-      </Routes>
-      <Footer />
+      <Provider store={store}>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/articles" element={<Articles />} />
+          <Route path="/pharmacies" element={<Pharamacypage />} />
+          <Route path="/articles/:id" element={<DetailedArticle />} />
+          <Route path="/signin" element={<Signin />} />
+          <Route path="/signup" element={<SignUp />} />
+        </Routes>
+        <Footer />
+      </Provider>
     </div>
   );
 }

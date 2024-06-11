@@ -7,7 +7,16 @@ import DetailedArticle from "./pages/DetailedArticle";
 import SignIn from "./pages/SignIn";
 import Home from "./pages/Home";
 import Articles from "./pages/Articles";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { setCredentials } from "./store/user/userSlice";
+
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setCredentials());
+  }, [dispatch]);
   return (
     <div>
       <NavBar />

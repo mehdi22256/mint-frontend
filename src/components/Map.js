@@ -1,8 +1,8 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import L, { icon } from "leaflet";
+import L from "leaflet";
 
 const customIcon = L.icon({
   iconUrl: require("../assets/pin.png"),

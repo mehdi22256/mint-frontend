@@ -1,13 +1,43 @@
 import undraw from "../assets/undraw_medicine.svg";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { signInReducer } from "../store/user/userSlice";
 const SignIn = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [signInUser, setSignInUser] = useState("");
+  const [signInPassword, setSignInPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [isRememberMe, setIsRememberMe] = useState(false);
+  const isLogged = useSelector((state) => state?.user?.isLogged);
+  console.log("🚀 ~ SignIn ~ isLogged:", isLogged);
 
-  const navigator = useNavigate();
+  useEffect(() => {
+    if (isLogged) {
+      navigate("/");
+    }
+  }, [isLogged, navigate]);
+
+  const signIn = (e) => {
+    setIsLoading(true);
+    e.preventDefault();
+    let userInfo = {
+      username: signInUser,
+      password: signInPassword,
+    };
+    dispatch(signInReducer({ userInfo, isRemember: isRememberMe })).finally(
+      () => {
+        setIsLoading(false);
+      }
+    );
+  };
+
+  if (isLoading) return <p>انتظر...</p>;
+
   const handleSignup = (e) => {
     e.preventDefault();
-    navigator("/signup");
+    navigate("/signup");
   };
 
   return (
@@ -20,13 +50,18 @@ const SignIn = () => {
           اهلا بك مرة أخرى...
         </p>
         <div className="flex flex-col">
-          <form className="flex flex-col items-center lg:items-stretch m-auto">
+          <form
+            onSubmit={signIn}
+            className="flex flex-col items-center lg:items-stretch m-auto"
+          >
             <input
+              onChange={(e) => setSignInUser(e.target.value)}
               className="w-80 lg:w-96 h-10 mb-5 bg-white border border-black pr-2 rounded-sm placeholder-primary"
               placeholder="اسم المستخدم"
               type="text"
             />
             <input
+              onChange={(e) => setSignInPassword(e.target.value)}
               className="w-80 lg:w-96 h-10 mb-1 bg-white border border-black pr-2 rounded-sm placeholder-primary"
               placeholder="كلمة المرور"
               type="password"
@@ -48,7 +83,10 @@ const SignIn = () => {
                 تذكرني
               </label>
             </div>
-            <button className="text-white bg-primary w-72 lg:w-full h-12 mb-4 rounded-sm  hover:bg-green-800">
+            <button
+              type="submit"
+              className="text-white bg-primary w-72 lg:w-full h-12 mb-4 rounded-sm  hover:bg-green-800"
+            >
               تسجيل الدخول
             </button>
             <div className="flex flex-row items-center justify-center gap-6 mb-5">

@@ -24,7 +24,7 @@ const Home = () => {
               <div className="flex flex-col lg:gap-5">
                 <div className="flex flex-row-reverse lg:flex-row items-center">
                   <img className="w-40 lg:w-auto" src={mintHome} alt="mint" />
-                  <p className="text-7xl lg:text-4xl text-primary lg:font-extrabold">
+                  <p className="text-7xl lg:text-6xl text-primary lg:font-extrabold">
                     نعناع
                   </p>
                 </div>

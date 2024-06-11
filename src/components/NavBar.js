@@ -2,17 +2,25 @@ import searching from "../assets/search.png";
 import mintNav from "../assets/Group.svg";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import LogOut from "./LogOut";
+
 const NavBar = () => {
   const [isSearch, setIsSearch] = useState(false);
   const [Searching, setSearching] = useState("");
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
+  const isLogged = useSelector((state) => state?.user?.isLogged);
   return (
     <div className="w-auto h-14 lg:h-20 bg-primary lg:px-16 sticky top-0 z-50">
       <nav className="hidden lg:flex text-white">
         <ul className="flex flex-row-reverse justify-start items-center space-x-20 p-1 text-xl">
-          <li className="w-max h-10 px-2 pt-1 rounded-lg font-semibold bg-white text-primary cursor-pointer hover:bg-green-800 hover:text-secondary">
-            <Link to={"/signin"}> تسجيل الدخول</Link>
-          </li>
+          {isLogged ? (
+            <LogOut />
+          ) : (
+            <li className="w-max h-10 px-2 pt-1 rounded-lg font-semibold bg-white text-primary cursor-pointer hover:bg-green-800 hover:text-secondary">
+              <Link to={"/signin"}> تسجيل الدخول</Link>
+            </li>
+          )}
           <li className="cursor-pointer hover:underline">
             <Link to={"/about"}>حولنا</Link>
           </li>
@@ -133,23 +141,21 @@ const NavBar = () => {
                 <Link to={"/about"}>حولنا</Link>
               </li>
 
-              {/* {isLogged ? (
-                <Logout isOpen={isBurgerOpen} setIsOpen={setIsBurgerOpen} />
-              ) : ( */}
-
-              <li
-                onClick={() => setIsBurgerOpen(!isBurgerOpen)}
-                className="cursor-pointer hover:bg-primary hover:text-black font-semibold py-5  w-screen mt-36"
-              >
-                <Link
-                  className="bg-primary rounded-full text-white hover:bg-secondary hover:text-primary p-2"
-                  to={"/signin"}
+              {isLogged ? (
+                <LogOut />
+              ) : (
+                <li
+                  onClick={() => setIsBurgerOpen(!isBurgerOpen)}
+                  className="cursor-pointer hover:bg-primary hover:text-black font-semibold py-5  w-screen mt-36"
                 >
-                  تسجيل الدخول
-                </Link>
-              </li>
-
-              {/* )} */}
+                  <Link
+                    className="bg-primary rounded-full text-white hover:bg-secondary hover:text-primary p-2"
+                    to={"/signin"}
+                  >
+                    تسجيل الدخول
+                  </Link>
+                </li>
+              )}
             </ul>
           </div>
         ) : null}

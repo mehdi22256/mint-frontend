@@ -4,7 +4,7 @@ import blogReducer from "./blog/blogSlice";
 
 const store = configureStore({
   reducer: {
-    User: UserReducer,
+    user: UserReducer,
     Blog: blogReducer,
   },
 });

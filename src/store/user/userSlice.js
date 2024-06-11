@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 
 export const signup = createAsyncThunk("User/signup", async ({ post }) => {
   try {
@@ -16,6 +17,7 @@ export const signup = createAsyncThunk("User/signup", async ({ post }) => {
     if (certificate) {
       formdata.append("certificate", certificate);
     }
+
     if (latitude && longitude) {
       formdata.append("latitude", latitude);
       formdata.append("longitude", longitude);
@@ -37,16 +39,52 @@ export const signup = createAsyncThunk("User/signup", async ({ post }) => {
   }
 });
 
+export const signInReducer = createAsyncThunk(
+  "User/signIn",
+  async ({ userInfo, isRemember }) => {
+    try {
+      const res = await axios.post(
+        "http://localhost:1000/user/signin",
+        userInfo
+      );
+      const data = res.data;
+      if (isRemember) {
+        localStorage.setItem("Token", data);
+      } else {
+        sessionStorage.setItem("Token", data);
+      }
+      const decoded = jwtDecode(data);
+      return decoded;
+    } catch (error) {
+      return console.log(error);
+    }
+  }
+);
+
 const initialState = {
   isLoading: false,
-  userData: null,
+  data: null,
   error: null,
+  isLogged: false,
 };
 
 const userSlice = createSlice({
   name: "User",
   initialState,
-  reducers: {},
+  reducers: {
+    setCredentials: (state) => {
+      try {
+        const token =
+          localStorage.getItem("Token") || sessionStorage.getItem("Token");
+        const decoded = jwtDecode(token);
+        state.isLogged = true;
+        state.data = decoded;
+      } catch (error) {
+        state.data = null;
+        state.isLogged = false;
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(signup.pending, (state) => {
@@ -55,14 +93,32 @@ const userSlice = createSlice({
       })
       .addCase(signup.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.userData = action.payload;
+        state.data = action.payload;
         state.error = null;
+        state.isLogged = true;
       })
       .addCase(signup.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message;
       });
+
+    //   signIn
+    builder.addCase(signInReducer.pending, (state) => {
+      state.isLoading = true;
+      state.error = null;
+    });
+    builder.addCase(signInReducer.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.data = action.payload;
+      state.error = null;
+      state.isLogged = true;
+    });
+    builder.addCase(signInReducer.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload || action.error.message;
+    });
   },
 });
 
+export const { setCredentials } = userSlice.actions;
 export default userSlice.reducer;

@@ -2,7 +2,7 @@ import d3 from "../assets/d3.png";
 import arrow from "../assets/arrow.png";
 const Articles = () => {
   return (
-    <div className="flex flex-row flex-wrap justify-evenly items-center gap-5 p-10">
+    <div className="flex flex-row flex-wrap justify-evenly items-center gap-5 gap-y-20 p-10">
       <div className="flex flex-col justify-center gap-5 w-96 px-5 h-[550px] border shadow-lg drop-shadow-xl rounded-lg cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-secondary duration-300">
         <div
           className="h-56 bg-cover bg-center bg-no-repeat text-sm rounded-3xl border"

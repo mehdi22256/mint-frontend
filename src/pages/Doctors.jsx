@@ -58,7 +58,7 @@ function Doctors() {
       <div className="flex  flex-wrap gap-24 justify-center mt-20 mb-10 ">
         <div className="w-[220px] h-[220px] bg-secondary rounded-md flex  justify-center relative  cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-secondary duration-300">
           <div className="w-[170px] h-[170px] rounded-full overflow-hidden absolute top-[-65px] shadow-lg">
-            <img src={xx} className="w-full h-full object-cover object-top " />
+            <img src={xx} alt="xx" className="w-full h-full object-cover object-top " />
           </div>
           <div className="mt-[55%] ">
             <h1 className="text-lg font-bold">الدكتور حمزة الحامزي</h1>
@@ -72,6 +72,7 @@ function Doctors() {
           <div className="w-[170px] h-[170px] rounded-full overflow-hidden absolute top-[-65px] shadow-lg">
             <img
               src={jasem}
+              alt="jasem"
               className="w-full h-full object-cover object-top "
             />
           </div>

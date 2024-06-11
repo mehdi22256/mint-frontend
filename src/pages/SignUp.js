@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import image from "../assets/sigin-up.png";
 import Map from "../components/Map";
 import { useDispatch } from "react-redux";
@@ -74,6 +74,7 @@ function SignUp() {
             <div>
               <img
                 src={image}
+                alt="role"
                 className=" w-[90%] mr-2 mt-5 mb-5 lg:w-[700px] lg:mr-0 lg:mt-[20%]"
               />
             </div>
@@ -230,6 +231,7 @@ function SignUp() {
             <div>
               <img
                 src={image}
+                alt="nice"
                 className=" w-[90%] mr-2 mt-5 mb-5 lg:w-[700px] lg:mr-0 lg:mt-[20%] "
               />
             </div>

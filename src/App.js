@@ -3,25 +3,26 @@ import { Routes, Route } from "react-router-dom";
 import Footer from "./components/Footer";
 import NavBar from "./components/NavBar";
 import About from "./pages/About";
-
 import SignUp from "./pages/SignUp";
 import { Provider } from "react-redux";
-import Articles from "./pages/Articles";
-
+import { useEffect } from "react";
+import { setCredentials } from "./store/user/userSlice";
 import Home from "./pages/Home";
 import Signin from "./pages/SignIn";
 import store from "./store/store";
-import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getAllBlog } from "./store/blog/blogSlice";
 import Doctors from "./pages/Doctors";
 import Pharmacy from "./pages/Pharmacy";
+import Articles from "./pages/Articles";
 
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(setCredentials());
     dispatch(getAllBlog());
-  }, []);
+  }, [dispatch]);
+
   return (
     <div>
       <Provider store={store}>

@@ -1,6 +1,10 @@
 import mr from "../assets/mr.png";
 import miss from "../assets/miss.png";
-const Comment = () => {
+import { useSelector } from "react-redux";
+const Comment = ({ _id }) => {
+  const comments = useSelector((state) => state?.comment?.get?.data);
+  console.log("🚀 ~ Comment ~ comments:", comments);
+
   return (
     <div className="m-auto py-5 px-5 lg:px-26">
       <hr className="my-10" />

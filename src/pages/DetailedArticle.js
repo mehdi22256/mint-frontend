@@ -1,58 +1,41 @@
-import d3 from "../assets/d3.png";
 import Comment from "../components/Comment";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 const DetailedArticle = () => {
+  const { _id } = useParams();
+  const blogs = useSelector((state) => state?.blog?.data);
+  const blog = blogs?.find((blog) => blog._id === _id);
+  console.log(blog);
   return (
     <div className="m-auto pt-5 lg:px-32">
       <div
         className="flex items-center justify-center m-auto bg-cover bg-center bg-no-repeat h-[480px]"
-        style={{ backgroundImage: `url(${d3})` }}
+        style={{
+          backgroundImage: `url(${`http://localhost:1000/${blog?.image}`})`,
+        }}
       ></div>
       <div className="flex flex-col justify-center items-center px-5 lg:px-10">
         <div className="flex flex-row w-max gap-x-2 lg:gap-x-3 ">
-          <p className="text-slate-400 text-sm lg:text-xl ">د.حمزة الحامزي</p>
-          <p className="text-slate-400 text-sm lg:text-xl ">.</p>
-          <p className="text-slate-400 text-sm lg:text-xl ">1يناير 2024</p>
           <p className="text-slate-400 text-sm lg:text-xl ">
-            وقت القراءة: 10 دقايق
+            {`${blog?.user?.role?.name === "doctor" ? `الدكتور` : `الصيدلي`} ${
+              blog?.user.firstName
+            } ${blog?.user.lastName}`}
+          </p>
+          <p className="text-slate-400 text-sm lg:text-xl ">.</p>
+          <p className="text-slate-400 text-sm lg:text-xl ">{blog?.date}</p>
+          <p className="text-slate-400 text-sm lg:text-xl ">
+            {blog?.timeOfReading}
           </p>
         </div>
         <p className="font-bold text-right font-serif text-2xl lg:text-5xl pt-5 leading-relaxed">
-          فيتامين دي 3: الفوائد الصحية والمصادر وأهمية الحفاظ على مستوياته
+          {blog?.title}
         </p>
         <p className="text-xl pt-5 lg:pt-10 leading-loose font-serif text-justify">
-          فيتامين دي 3 (D3)، المعروف أيضًا باسم كوليكالسيفيرول، هو أحد
-          الفيتامينات الأساسية التي تلعب دورًا حيويًا في الحفاظ على الصحة
-          العامة. وفيما يلي نظرة عامة على فوائده الصحية، مصادره، وأهمية الحفاظ
-          على مستوياته: الفوائد الصحية لفيتامين دي 3 صحة العظام: يعزز فيتامين دي
-          3 امتصاص الكالسيوم والفوسفور في الأمعاء، مما يساعد في تكوين وصيانة
-          العظام والأسنان. يساهم في الوقاية من هشاشة العظام والكسور، خاصة عند
-          كبار السن. تعزيز الجهاز المناعي: يدعم فيتامين دي 3 جهاز المناعة، مما
-          يساعد في الوقاية من العدوى والأمراض. صحة القلب والأوعية الدموية: قد
-          يساعد في تنظيم ضغط الدم وتقليل مخاطر الأمراض القلبية. دعم المزاج
-          والصحة النفسية: يمكن أن يساهم فيتامين دي 3 في تحسين المزاج وتقليل خطر
-          الإصابة بالاكتئاب. الوقاية من بعض الأمراض: تشير بعض الدراسات إلى أن
-          فيتامين دي 3 قد يلعب دورًا في تقليل مخاطر بعض أنواع السرطان، السكري من
-          النوع 2، وأمراض المناعة الذاتية. مصادر فيتامين دي 3 التعرض لأشعة
-          الشمس: يُعتبر التعرض لأشعة الشمس المصدر الطبيعي الرئيسي لفيتامين دي 3.
-          يُنتج الجلد الفيتامين عند التعرض للأشعة فوق البنفسجية (UVB). الأطعمة:
-          الأسماك الدهنية: مثل السلمون، والماكريل، والتونة. زيت كبد السمك.
-          البيض: خصوصًا صفار البيض. اللحوم الحمراء. الأطعمة المدعمة: مثل بعض
-          أنواع الحليب، والعصائر، وحبوب الإفطار المدعمة بفيتامين دي. المكملات
-          الغذائية: تُستخدم مكملات فيتامين دي 3 لتعويض نقص الفيتامين، خاصة في
-          المناطق التي تقل فيها أشعة الشمس أو للأشخاص الذين يعانون من صعوبة في
-          امتصاص الفيتامين من الطعام. أهمية الحفاظ على مستويات فيتامين دي 3
-          الوقاية من نقص الفيتامين: نقص فيتامين دي 3 يمكن أن يؤدي إلى مشكلات
-          صحية خطيرة، مثل الكساح عند الأطفال ولين العظام عند البالغين. التوازن
-          الأمثل للوظائف الجسدية: الحفاظ على مستويات مناسبة من فيتامين دي 3 يضمن
-          الأداء السليم للعديد من وظائف الجسم الحيوية. تقليل مخاطر الأمراض
-          المزمنة: يمكن أن يساهم في الوقاية من الأمراض المزمنة المرتبطة بنقص
-          فيتامين دي. الخلاصة الحفاظ على مستويات كافية من فيتامين دي 3 هو أمر
-          أساسي للصحة العامة. يُنصح بالتعرض المنتظم لأشعة الشمس، وتناول الأطعمة
-          الغنية بفيتامين دي 3، واستخدام المكملات الغذائية عند الحاجة لضمان
-          تلبية احتياجات الجسم من هذا الفيتامين الحيوي.
+          {blog?.content}
         </p>
       </div>
-      <Comment />
+
+      <Comment _id={_id} />
     </div>
   );
 };

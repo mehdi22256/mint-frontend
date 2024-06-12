@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import signOutLogo from "../assets/sign-out.png";
 import medPage from "../assets/medical-app.png";
 import article from "../assets/article.png";
@@ -36,17 +36,23 @@ const LogOut = () => {
                 />
               </div>
               <div className="flex flex-col">
-                <p>{`${user?.firstName} ${user?.familyName}`}</p>
+                <p>{`${user?.firstName} ${user?.lastName}`}</p>
                 <p>{user?.username}@</p>
               </div>
             </div>
             <hr className="h-[1px] mt-4 bg-black" />
             <div className="flex flex-col justify-center items-center gap-5 mt-5">
-              <div className="flex flex-row w-full h-full py-1 justify-center items-center gap-5 hover:bg-primary cursor-pointer">
+              <div
+                onClick={() => navigate("/dashboard")}
+                className="flex flex-row w-full h-full py-1 justify-center items-center gap-5 hover:bg-primary cursor-pointer"
+              >
                 <img className="w-7" src={medPage} alt="medPage" />
-                <p>صفحة العيادة</p>
+                <p> الصفحة الرئيسية</p>
               </div>
-              <div className="flex flex-row w-full h-full py-1 pl-6 justify-center items-center gap-5 hover:bg-primary cursor-pointer">
+              <div
+                onClick={() => navigate("/newarticle")}
+                className="flex flex-row w-full h-full py-1 pl-6 justify-center items-center gap-5 hover:bg-primary cursor-pointer"
+              >
                 <img className="w-7" src={article} alt="article" />
                 <p>انشاء مقال</p>
               </div>
@@ -64,14 +70,20 @@ const LogOut = () => {
 
       {/* mobile */}
 
-      <div onClick={logOut} className="lg:hidden">
+      <div className="lg:hidden  divide-y-2 divide-black">
         <li className="cursor-pointer hover:bg-primary hover:text-black font-semibold py-5  w-screen ">
-          صفحة العيادة
+          <Link to={"/info"}>معلومات الحساب</Link>
         </li>
         <li className="cursor-pointer hover:bg-primary hover:text-black font-semibold py-5  w-screen ">
-          انشاء مقال
+          <Link to={"/newarticle"}>انشاء مقال</Link>
         </li>
-        <li className="cursor-pointer hover:bg-primary hover:text-black font-semibold py-5  w-screen mt-36">
+        <li className="cursor-pointer hover:bg-primary hover:text-black font-semibold py-5  w-screen">
+          <Link to={"/booking"}>الحجوزات</Link>
+        </li>
+        <li
+          onClick={logOut}
+          className="cursor-pointer hover:bg-primary hover:text-black font-semibold py-5  w-screen"
+        >
           تسجيل الخروج
         </li>
       </div>

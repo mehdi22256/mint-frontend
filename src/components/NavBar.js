@@ -104,7 +104,7 @@ const NavBar = () => {
           >
             <ul
               className="flex text-center
-          flex-col justify-center items-center text-2xl mb-[600px]"
+          flex-col justify-center items-center text-lل mb-[600px] divide-y-2 divide-black"
             >
               <li
                 onClick={() => setIsBurgerOpen(!isBurgerOpen)}
@@ -146,7 +146,7 @@ const NavBar = () => {
               ) : (
                 <li
                   onClick={() => setIsBurgerOpen(!isBurgerOpen)}
-                  className="cursor-pointer hover:bg-primary hover:text-black font-semibold py-5  w-screen mt-36"
+                  className="cursor-pointer hover:bg-primary hover:text-black font-semibold py-5  w-screen"
                 >
                   <Link
                     className="bg-primary rounded-full text-white hover:bg-secondary hover:text-primary p-2"

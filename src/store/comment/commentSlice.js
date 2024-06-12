@@ -6,9 +6,9 @@ const initialState = {
   create: { loading: false, data: null, error: null },
 };
 
-export const getAllBlog = createAsyncThunk("Blog/getAllBlog", async () => {
+export const getComments = createAsyncThunk("Comment/getComments", async () => {
   try {
-    const res = await axios.get("http://localhost:1000/blog");
+    const res = await axios.get("http://localhost:1000/comment");
     const data = res.data;
     return data;
   } catch (error) {
@@ -17,7 +17,7 @@ export const getAllBlog = createAsyncThunk("Blog/getAllBlog", async () => {
 });
 
 export const fetchCreate = createAsyncThunk(
-  "blog/fetchCreate",
+  "Comment/fetchCreate",
   async ({ post, token }) => {
     try {
       const formData = new FormData();
@@ -30,7 +30,7 @@ export const fetchCreate = createAsyncThunk(
       formData.append("image", image);
       formData.append("category", category);
       const response = await axios.post(
-        "http://localhost:1000/blog",
+        "http://localhost:1000/comment",
         formData,
         {
           headers: {
@@ -45,24 +45,24 @@ export const fetchCreate = createAsyncThunk(
   }
 );
 
-const blogSlice = createSlice({
-  name: "Blog",
+const commentSlice = createSlice({
+  name: "Comment",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getAllBlog.pending, (state) => {
-        state.isLoading = true;
-        state.error = null;
+      .addCase(getComments.pending, (state) => {
+        state.get.loading = true;
+        state.get.error = null;
       })
-      .addCase(getAllBlog.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.data = action.payload;
-        state.error = null;
+      .addCase(getComments.fulfilled, (state, action) => {
+        state.get.loading = false;
+        state.get.data = action.payload;
+        state.get.error = null;
       })
-      .addCase(getAllBlog.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.error.message;
+      .addCase(getComments.rejected, (state, action) => {
+        state.get.loading = false;
+        state.get.error = action.error.message;
       });
 
     // fetchCreate
@@ -81,4 +81,4 @@ const blogSlice = createSlice({
   },
 });
 
-export default blogSlice.reducer;
+export default commentSlice.reducer;

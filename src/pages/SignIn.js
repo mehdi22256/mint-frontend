@@ -11,7 +11,6 @@ const SignIn = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isRememberMe, setIsRememberMe] = useState(false);
   const isLogged = useSelector((state) => state?.user?.isLogged);
-  console.log("🚀 ~ SignIn ~ isLogged:", isLogged);
 
   useEffect(() => {
     if (isLogged) {

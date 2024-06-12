@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdAddAPhoto } from "react-icons/md";
 import { signup } from "../store/user/userSlice";
+import { useNavigate } from "react-router-dom";
 
 function SignUp() {
   const [formData, setFormData] = useState({
@@ -25,6 +26,7 @@ function SignUp() {
     age: "",
     endTime: "",
     expectedMinutes: "",
+    specialty: "",
   });
   const [personImage, setPersonImage] = useState("");
   const [certificate, setcertificate] = useState("");
@@ -64,6 +66,11 @@ function SignUp() {
     } else {
       dispatch(signup({ post }));
     }
+  };
+  const navigate = useNavigate();
+  const handleSignin = (e) => {
+    e.preventDefault();
+    navigate("/signin");
   };
 
   return (
@@ -212,7 +219,10 @@ function SignUp() {
                 <h1 className="mx-2 text-primary">او</h1>
                 <hr className="h-[1.5px] w-[50%]  bg-black " />
               </div>
-              <button className="bg-white p-2 text-primary rounded-md hover:bg-primary border-2  border-primary hover:text-white ">
+              <button
+                onClick={handleSignin}
+                className="bg-white p-2 text-primary rounded-md hover:bg-primary border-2  border-primary hover:text-white "
+              >
                 {" "}
                 تسجيل دخول{" "}
               </button>
@@ -315,6 +325,34 @@ function SignUp() {
                     value="665de357e9ef4cb7062684dd"
                   >
                     دكتور
+                  </option>
+                  <option
+                    className="text-primary"
+                    value="665de37ce9ef4cb7062684e0"
+                  >
+                    صيدلاني
+                  </option>
+                </select>
+                <select
+                  name="role"
+                  value={formData.specialty}
+                  onChange={handleChange}
+                  className="w-[97%] p-1 mb-3 text-primary"
+                >
+                  <option disabled value="">
+                    الاختصاص الطبي
+                  </option>
+                  <option
+                    className="text-primary"
+                    value="665de38be9ef4cb7062684e2"
+                  >
+                    باطنية قلبية صدرية
+                  </option>
+                  <option
+                    className="text-primary"
+                    value="665de357e9ef4cb7062684dd"
+                  >
+                    جلدية
                   </option>
                   <option
                     className="text-primary"
@@ -506,7 +544,10 @@ function SignUp() {
                 <h1 className="mx-2 text-primary">او</h1>
                 <hr className="h-[1.5px] w-[50%]  bg-black " />
               </div>
-              <button className="bg-white p-2 text-primary rounded-md hover:bg-primary border-2  border-primary hover:text-white ">
+              <button
+                onClick={handleSignin}
+                className="bg-white p-2 text-primary rounded-md hover:bg-primary border-2  border-primary hover:text-white "
+              >
                 {" "}
                 تسجيل دخول{" "}
               </button>

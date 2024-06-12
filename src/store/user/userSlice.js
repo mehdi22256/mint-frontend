@@ -61,11 +61,38 @@ export const signInReducer = createAsyncThunk(
   }
 );
 
+export const getDoctor = createAsyncThunk(
+  "User/getDoctor",
+  async ({ info }) => {
+    try {
+      const res = await axios.get("http://localhost:1000/user/doctor", info);
+      const data = res.data;
+
+      return data;
+    } catch (error) {
+      return console.log(error);
+    }
+  }
+);
+
+export const getUser = createAsyncThunk("User/getUser", async () => {
+  try {
+    const res = await axios.get("http://localhost:1000/user");
+    const data = res.data;
+
+    return data;
+  } catch (error) {
+    return console.log(error);
+  }
+});
+
 const initialState = {
   isLoading: false,
   data: null,
   error: null,
   isLogged: false,
+  users: null,
+  doctors: null,
 };
 
 const userSlice = createSlice({
@@ -117,6 +144,37 @@ const userSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload || action.error.message;
     });
+    // get user data
+    builder
+      .addCase(getUser.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(getUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.users = action.payload;
+        state.error = null;
+      })
+      .addCase(getUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
+      });
+
+    // get doctor data
+    builder
+      .addCase(getDoctor.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(getDoctor.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.doctors = action.payload;
+        state.error = null;
+      })
+      .addCase(getDoctor.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
+      });
   },
 });
 

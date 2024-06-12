@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { FaLocationDot } from "react-icons/fa6";
 import xx from "../assets/12.png";
 import jasem from "../assets/doctor-j.jpg";
+import { useSelector, useDispatch } from "react-redux";
+import { getDoctor } from "../store/user/userSlice";
+
 function Doctors() {
+  const [category, setcategoryValue] = useState(null);
+  const [city, setCityValue] = useState(null);
+  const info = { category, city };
+  const dispatch = useDispatch();
+
+  console.log("🚀 ~ Doctors ~ info:", info);
+  useEffect(() => {
+    dispatch(getDoctor(info));
+  }, []);
+
+  const userdata = useSelector((state) => state.user.doctors);
+  console.log("🚀 ~ Doctors ~ userdata:", userdata);
+
   return (
     <div className="flex flex-col justify-between mx-10 ">
       <div className="md:flex md:justify-around md:items-center  md:w-[100%]">
@@ -42,8 +58,9 @@ function Doctors() {
             <select
               name="المحافظة"
               className="w-[100%] md:h-10 border-2 rounded-lg  "
+              onChange={(e) => setcategoryValue(e.target.value)}
             >
-              <option value="التخصص" disabled>
+              <option value="التخصص" disabled hidden selected>
                 {" "}
                 التخصص{" "}
               </option>
@@ -56,34 +73,26 @@ function Doctors() {
         </div>
       </div>
       <div className="flex  flex-wrap gap-24 justify-center mt-20 mb-10 ">
-        <div className="w-[220px] h-[220px] bg-secondary rounded-md flex  justify-center relative  cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-secondary duration-300">
-          <div className="w-[170px] h-[170px] rounded-full overflow-hidden absolute top-[-65px] shadow-lg">
-            <img src={xx} alt="xx" className="w-full h-full object-cover object-top " />
+        {userdata?.map((dr) => (
+          <div className="w-[220px] h-[220px] bg-secondary rounded-md flex  justify-center relative  cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-secondary duration-300">
+            <div className="w-[170px] h-[170px] rounded-full overflow-hidden absolute top-[-65px] shadow-lg">
+              <img
+                src={`http://localhost:1000/${dr.image}`}
+                alt="xx"
+                className="w-full h-full object-cover object-top "
+              />
+            </div>
+            <div className="mt-[55%] ">
+              <h1 className="text-lg font-bold">
+                {dr.firstName} {dr.lastName}
+              </h1>
+              <p className="text-center flex justify-center items-center">
+                <FaLocationDot className="text-xs mx-1 text-primary " />
+                {dr.city}
+              </p>
+            </div>
           </div>
-          <div className="mt-[55%] ">
-            <h1 className="text-lg font-bold">الدكتور حمزة الحامزي</h1>
-            <p className="text-center flex justify-center items-center">
-              <FaLocationDot className="text-xs mx-1 text-primary " />
-              النجف حي السلام{" "}
-            </p>
-          </div>
-        </div>
-        <div className="w-[220px] h-[220px] bg-secondary rounded-md flex  justify-center relative  cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-secondary duration-300">
-          <div className="w-[170px] h-[170px] rounded-full overflow-hidden absolute top-[-65px] shadow-lg">
-            <img
-              src={jasem}
-              alt="jasem"
-              className="w-full h-full object-cover object-top "
-            />
-          </div>
-          <div className="mt-[55%] ">
-            <h1 className="text-lg font-bold"> الدكتور جاسم الحاسمي</h1>
-            <p className="text-center flex justify-center items-center">
-              <FaLocationDot className="text-xs mx-1 text-primary " />
-              النجف حي الاسكان{" "}
-            </p>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );

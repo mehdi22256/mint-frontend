@@ -15,12 +15,14 @@ import { getAllBlog } from "./store/blog/blogSlice";
 import Doctors from "./pages/Doctors";
 import Pharmacy from "./pages/Pharmacy";
 import Articles from "./pages/Articles";
+import { getUser } from "./store/user/userSlice";
 
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(setCredentials());
     dispatch(getAllBlog());
+    dispatch(getUser());
   }, [dispatch]);
 
   return (

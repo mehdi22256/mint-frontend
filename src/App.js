@@ -12,12 +12,12 @@ import Signin from "./pages/SignIn";
 import store from "./store/store";
 import { useDispatch } from "react-redux";
 import { getAllBlog } from "./store/blog/blogSlice";
+import { getComments } from "./store/comment/commentSlice";
 import { fetchCategories } from "./store/category/categorySlice";
 import Doctors from "./pages/Doctors";
 import Pharmacy from "./pages/Pharmacy";
 import Articles from "./pages/Articles";
 import { getUser } from "./store/user/userSlice";
-
 import NewArticle from "./pages/NewArticle";
 import DashBoard from "./pages/DashBoard";
 import InfoPage from "./components/InfoPage";
@@ -30,6 +30,7 @@ function App() {
     dispatch(getAllBlog());
     dispatch(getUser());
     dispatch(fetchCategories());
+    dispatch(getComments());
   }, [dispatch]);
 
   return (
@@ -49,10 +50,10 @@ function App() {
             <Route path="newarticle" element={<NewArticle />} />
           </Route>
           <Route path="/doctors" element={<Doctors />} />
-          <Route path="/Pharmacy" element={<Pharmacy />} />
+          <Route path="/pharmacy" element={<Pharmacy />} />
           <Route path="/about" element={<About />} />
           <Route path="/signin" element={<Signin />} />
-          <Route path="/doctor" element={<Doctors />} />
+          <Route path="/doctors" element={<Doctors />} />
           <Route path="/signup" element={<SignUp />} />
         </Routes>
         <Footer />

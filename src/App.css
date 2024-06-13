@@ -10,6 +10,18 @@
     transform: scaleX(1);
   }
 }
+#logOut {
+  transform-origin: top;
+  animation: open-logOut 0.5s ease-in-out forwards;
+}
+@keyframes open-logOut {
+  0% {
+    transform: scaleY(0);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
 #searchMobile {
   transform-origin: left;
   animation: open-searchMobile 0.5s ease-in-out forwards;

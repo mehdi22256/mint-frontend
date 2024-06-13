@@ -5,7 +5,6 @@ const DetailedArticle = () => {
   const { _id } = useParams();
   const blogs = useSelector((state) => state?.blog?.data);
   const blog = blogs?.find((blog) => blog._id === _id);
-  console.log(blog);
   return (
     <div className="m-auto pt-5 lg:px-32">
       <div

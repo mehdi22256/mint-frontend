@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { FaLocationDot } from "react-icons/fa6";
-import xx from "../assets/12.png";
-import jasem from "../assets/doctor-j.jpg";
 import { useSelector, useDispatch } from "react-redux";
 import { getDoctor } from "../store/user/userSlice";
 

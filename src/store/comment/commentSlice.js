@@ -20,27 +20,14 @@ export const fetchCreate = createAsyncThunk(
   "Comment/fetchCreate",
   async ({ post, token }) => {
     try {
-      const formData = new FormData();
-      const { title, content, description, timeOfReading, image, category } =
-        post;
-      formData.append("title", title);
-      formData.append("content", content);
-      formData.append("description", description);
-      formData.append("timeOfReading", timeOfReading);
-      formData.append("image", image);
-      formData.append("category", category);
-      const response = await axios.post(
-        "http://localhost:1000/comment",
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-      return response.data;
+      const res = await axios.post("http://localhost:1000/comment", post, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return res.data;
     } catch (error) {
-      console.error(error.message);
+      return console.log(error);
     }
   }
 );

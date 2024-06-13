@@ -5,9 +5,14 @@ import blogLogo from "../assets/blog.png";
 import drugLogo from "../assets/drug.png";
 import medicineLogo from "../assets/medicine.png";
 import search from "../assets/search.png";
-import d3 from "../assets/d3.png";
 import arrow from "../assets/arrow.png";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 const Home = () => {
+  const blogs = useSelector((state) => state?.blog?.data);
+  const navigate = useNavigate();
+
   return (
     <div className="w-full p-3 lg:p-14">
       {/* hero */}
@@ -49,7 +54,10 @@ const Home = () => {
 
           {/* Cards */}
           <div className="relative bottom-10 lg:bottom-12 flex flex-row-reverse md:justify-center lg:items-center gap-x-2 lg:gap-14 p-2 lg:p-0">
-            <div className="flex flex-col justify-center items-center text-center gap-2 p-3 lg:gap-5 border-2 border-gray-300 w-1/3 md:w-[25%] lg:w-56 lg:h-72 bg-white rounded-lg cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-secondary duration-300">
+            <div
+              onClick={() => navigate("/articles")}
+              className="flex flex-col justify-center items-center text-center gap-2 p-3 lg:gap-5 border-2 border-gray-300 w-1/3 md:w-[25%] lg:w-56 lg:h-72 bg-white rounded-lg cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-secondary duration-300"
+            >
               <img
                 className="w-[50px] h-[50px] lg:h-auto lg:w-auto"
                 src={blogLogo}
@@ -59,7 +67,10 @@ const Home = () => {
               <p className="text-xs">اقرأ احدث المقالات الطبية</p>
             </div>
 
-            <div className="flex flex-col justify-center items-center text-center gap-2 p-3 lg:gap-5 border-2 border-gray-300 w-1/3 md:w-[25%] lg:w-56 lg:h-72 bg-white rounded-lg cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-secondary duration-300">
+            <div
+              onClick={() => navigate("/pharmacy")}
+              className="flex flex-col justify-center items-center text-center gap-2 p-3 lg:gap-5 border-2 border-gray-300 w-1/3 md:w-[25%] lg:w-56 lg:h-72 bg-white rounded-lg cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-secondary duration-300"
+            >
               <img
                 className="w-[50px] h-[50px] lg:h-auto lg:w-auto"
                 src={drugLogo}
@@ -69,7 +80,10 @@ const Home = () => {
               <p className="text-xs">اكتشف اقرب الصيدليات في منطقتك</p>
             </div>
 
-            <div className="flex flex-col justify-center items-center text-center gap-2 p-3 lg:gap-5 border-2 border-gray-300 w-1/3 md:w-[25%] lg:w-56 lg:h-72 bg-white rounded-lg cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-secondary duration-300">
+            <div
+              onClick={() => navigate("/doctors")}
+              className="flex flex-col justify-center items-center text-center gap-2 p-3 lg:gap-5 border-2 border-gray-300 w-1/3 md:w-[25%] lg:w-56 lg:h-72 bg-white rounded-lg cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-secondary duration-300"
+            >
               <img
                 className="w-[50px] h-[50px] lg:h-auto lg:w-auto"
                 src={medicineLogo}
@@ -105,83 +119,37 @@ const Home = () => {
 
       {/* article Card */}
       <div className="flex flex-row flex-wrap justify-around items-center gap-5 my-5 lg:my-0 lg:mt-10">
-        <div className="flex flex-col justify-center gap-5 w-96 px-5 h-[550px] border shadow-lg drop-shadow-xl rounded-lg cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-secondary duration-300">
+        {blogs?.slice(0, 3)?.map((blog) => (
           <div
-            className="h-56 bg-cover bg-center bg-no-repeat text-sm rounded-3xl border"
-            style={{ backgroundImage: `url(${d3})` }}
-          ></div>
-          <p className="font-[500]">
-            فيتامين دي 3: الفوائد الصحية والمصادر وأهمية الحفاظ على مستوياته
-          </p>
-          <div className="flex flex-row gap-2 text-right text-gray-400">
-            <p>طبي</p>
-            <p>.</p>
-            <p>فيتامينات</p>
-            <p>.</p>
-            <p>10 دقائق</p>
-          </div>
-          <hr className="h-1 w-36 bg-primary" />
-          <p className="text-sm line-clamp-3">
-            فيتامين دي 3، المعروف أيضًا بالكوليكالسيفيرول، هو نوع من الفيتامينات
-            الأساسية لصحة الإنسان. يلعب دورًا حيويًا في تنظيم توازن...
-          </p>
-          <div className="flex flex-row justify-end items-center gap-2">
-            <p className="hover:underline cursor-pointer">اقرأ المزيد </p>
-            <img src={arrow} alt="arrow" />
-          </div>
-        </div>
+            onClick={() => navigate(`/articles/${blog?._id}`)}
+            className="flex flex-col justify-center gap-5 w-96 px-5 h-[550px] border shadow-lg drop-shadow-xl rounded-lg cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-secondary duration-300"
+          >
+            <div
+              className="h-56 bg-cover bg-center bg-no-repeat text-sm rounded-3xl border"
+              style={{
+                backgroundImage: `url(${`http://localhost:1000/${blog?.image}`})`,
+              }}
+            ></div>
+            <p className="font-[500]">{blog?.title} </p>
+            <div className="flex flex-row gap-2 text-right text-gray-400">
+              <p>{blog?.category?.name}</p>
+              <p>.</p>
 
-        <div className="flex flex-col justify-center gap-5 w-96 px-5 h-[550px] border shadow-lg drop-shadow-xl rounded-lg cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-secondary duration-300">
-          <div
-            className="h-56 bg-cover bg-center bg-no-repeat text-sm rounded-3xl border"
-            style={{ backgroundImage: `url(${d3})` }}
-          ></div>
-          <p className="font-[500]">
-            فيتامين دي 3: الفوائد الصحية والمصادر وأهمية الحفاظ على مستوياته
-          </p>
-          <div className="flex flex-row gap-2 text-right text-gray-400">
-            <p>طبي</p>
-            <p>.</p>
-            <p>فيتامينات</p>
-            <p>.</p>
-            <p>10 دقائق</p>
+              <p>{blog?.timeOfReading} </p>
+            </div>
+            <hr className="h-1 w-36 bg-primary" />
+            <p className="text-sm line-clamp-3">{blog?.description}</p>
+            <div className="flex flex-row justify-end items-center gap-2">
+              <p
+                onClick={() => navigate(`/articles/${blog?._id}`)}
+                className="hover:underline cursor-pointer"
+              >
+                اقرأ المزيد{" "}
+              </p>
+              <img src={arrow} alt="arrow" />
+            </div>
           </div>
-          <hr className="h-1 w-36 bg-primary" />
-          <p className="text-sm line-clamp-3">
-            فيتامين دي 3، المعروف أيضًا بالكوليكالسيفيرول، هو نوع من الفيتامينات
-            الأساسية لصحة الإنسان. يلعب دورًا حيويًا في تنظيم توازن...
-          </p>
-          <div className="flex flex-row justify-end items-center gap-2">
-            <p className="hover:underline cursor-pointer">اقرأ المزيد </p>
-            <img src={arrow} alt="arrow" />
-          </div>
-        </div>
-
-        <div className="flex flex-col justify-center gap-5 w-96 px-5 h-[550px] border shadow-lg drop-shadow-xl rounded-lg cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-secondary duration-300">
-          <div
-            className="h-56 bg-cover bg-center bg-no-repeat rounded-3xl border"
-            style={{ backgroundImage: `url(${d3})` }}
-          ></div>
-          <p className="font-[500]">
-            فيتامين دي 3: الفوائد الصحية والمصادر وأهمية الحفاظ على مستوياته
-          </p>
-          <div className="flex flex-row gap-2 text-right text-gray-400">
-            <p>طبي</p>
-            <p>.</p>
-            <p>فيتامينات</p>
-            <p>.</p>
-            <p>10 دقائق</p>
-          </div>
-          <hr className="h-1 w-36 bg-primary" />
-          <p className="text-sm line-clamp-3">
-            فيتامين دي 3، المعروف أيضًا بالكوليكالسيفيرول، هو نوع من الفيتامينات
-            الأساسية لصحة الإنسان. يلعب دورًا حيويًا في تنظيم توازن...
-          </p>
-          <div className="flex flex-row justify-end items-center gap-2">
-            <p className="hover:underline cursor-pointer">اقرأ المزيد </p>
-            <img src={arrow} alt="arrow" />
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );

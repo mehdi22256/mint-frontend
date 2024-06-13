@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { FaLocationDot } from "react-icons/fa6";
-import xx from "../assets/12.png";
-import jasem from "../assets/doctor-j.jpg";
 import { useSelector, useDispatch } from "react-redux";
 import { getDoctor } from "../store/user/userSlice";
+import { getSpecilty } from "../store/specialty/specialtySlice";
 
 function Doctors() {
-  const [category, setcategoryValue] = useState(null);
+  const specialtyData = useSelector((state) => state.specilty.data);
+
+  const [specialty, setSpecialty] = useState(null);
   const [city, setCityValue] = useState(null);
-  const info = { category, city };
   const dispatch = useDispatch();
 
-  console.log("🚀 ~ Doctors ~ info:", info);
+  useEffect(() => {
+    dispatch(getSpecilty());
+  }, []);
+  const info = { specialty, city };
   useEffect(() => {
     dispatch(getDoctor(info));
-  }, []);
-
+  }, [city, specialty, dispatch]);
   const userdata = useSelector((state) => state.user.doctors);
   console.log("🚀 ~ Doctors ~ userdata:", userdata);
 
@@ -38,36 +40,44 @@ function Doctors() {
             <select
               name="المحافظة"
               className="w-[100%] md:h-10 border-2 rounded-lg  "
+              onChange={(e) => setCityValue(e.target.value)}
             >
               <option value="المحافظة" disabled>
                 {" "}
                 المحافظة{" "}
               </option>
-              <option value="النجف"> النجف </option>
-              <option value="الديوانية">الديوانية</option>
-              <option value="الحلة  ">الحلة </option>
-              <option value="كربلاء">كربلاء</option>
-              <option value="الناصرية">الناصرية</option>
-              <option value="السماوة">السماوة</option>
-              <option value="بغداد ">بغداد</option>
-              <option value="البصرة"> البصرة</option>
-              <option value="الفلوجة">الفلوجة</option>
+              <option value="baghdad">بغداد</option>
+              <option value="basra">البصرة</option>
+              <option value="kirkuk">كركوك</option>
+              <option value="maysan">ميسان</option>
+              <option value="diyala">ديالى</option>
+              <option value="wasit">واسط</option>
+              <option value="muthanna">المثنى</option>
+              <option value="dhi_qar">ذي قار</option>
+              <option value="qadisiyyah">القادسية</option>
+              <option value="babel">بابل</option>
+              <option value="anbar">الأنبار</option>
+              <option value="salahaddin">صلاح الدين</option>
+              <option value="ninawa">نينوى</option>
+              <option value="erbil">أربيل</option>
+              <option value="duhok">دهوك</option>
+              <option value="sulaymaniyah">السليمانية</option>
+              <option value="najaf">النجف</option>
+              <option value="karbala">كربلاء</option>
             </select>
           </div>
           <div className=" w-[45%] ">
             <select
-              name="المحافظة"
               className="w-[100%] md:h-10 border-2 rounded-lg  "
-              onChange={(e) => setcategoryValue(e.target.value)}
+              onChange={(e) => setSpecialty(e.target.value)}
             >
               <option value="التخصص" disabled hidden selected>
                 {" "}
                 التخصص{" "}
               </option>
-              <option value="1">انف واذن وحنجرة</option>
-              <option value="2 ">باطنية </option>
-              <option value="3">قلبية </option>
-              <option value="4">اطفال</option>
+              {specialtyData?.map((specialty) => (
+                <option value={specialty._id}> {specialty.name}</option>
+              ))}
             </select>
           </div>
         </div>

@@ -63,9 +63,13 @@ export const signInReducer = createAsyncThunk(
 
 export const getDoctor = createAsyncThunk(
   "User/getDoctor",
-  async ({ info }) => {
+  async ({ specialty, city }) => {
     try {
-      const res = await axios.get("http://localhost:1000/user/doctor", info);
+      const res = await axios.get(
+        "http://localhost:1000/user/doctor",
+        specialty,
+        city
+      );
       const data = res.data;
 
       return data;

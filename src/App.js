@@ -23,6 +23,8 @@ import DashBoard from "./pages/DashBoard";
 import InfoPage from "./components/InfoPage";
 import Bookings from "./components/Bookings";
 import DetailedArticle from "./pages/DetailedArticle";
+import Pharamacylocation from "./pages/Pharmacylocation";
+import Doctorlocation from "./pages/DoctorsLocation";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {

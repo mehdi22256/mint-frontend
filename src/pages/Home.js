@@ -97,6 +97,7 @@ const Home = () => {
       </div>
 
       {/* pharmacies */}
+      
       <div className="flex flex-row justify-center lg:items-center bg-secondary py-4 lg:py-16 rounded-xl lg:mt-10">
         <div className="hidden lg:flex w-1/3">
           <img src={pic2} alt="pharmacy" />

@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import image from "../assets/sigin-up.png";
 import Map from "../components/Map";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdAddAPhoto } from "react-icons/md";
 import { signup } from "../store/user/userSlice";
 import { useNavigate } from "react-router-dom";
+import { getSpecilty } from "../store/specialty/specialtySlice";
 
 function SignUp() {
   const [formData, setFormData] = useState({
@@ -17,12 +18,13 @@ function SignUp() {
     email: "",
     gender: "",
     password: "",
-    role: "customer",
+    role: "",
     city: "",
     clinicLocation: "",
     phoneNumber: "",
     holidays: "",
     startTime: "",
+    governorate: "",
     age: "",
     endTime: "",
     expectedMinutes: "",
@@ -36,7 +38,10 @@ function SignUp() {
     latitude: null,
     longitude: null,
   });
-  console.log(location);
+  const dataSpecialty = useSelector((state) => state.specilty.data);
+  useEffect(() => {
+    dispatch(getSpecilty());
+  }, []);
 
   const map = () => setShowMap(!showMap);
   const handleChange = (e) => {
@@ -75,7 +80,7 @@ function SignUp() {
 
   return (
     <div>
-      {formData.role === "665de38be9ef4cb7062684e2" ? (
+      {formData.role === "665de38be9ef4cb7062684e2" || formData.role === "" ? (
         <div>
           <div className="lg:flex lg:flex-row-reverse  lg:justify-around">
             <div>
@@ -299,8 +304,7 @@ function SignUp() {
               <input
                 name="confirmPassword"
                 type="password"
-                value={formData.confirmPassword}
-                onChange={handleChange}
+                onChange={(e) => setconfirmPassword(e.target.value)}
                 placeholder="تأكيد كلمة المرور"
                 className=" border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 font-sans text-lg font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-gray-900 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50 "
               />
@@ -334,7 +338,7 @@ function SignUp() {
                   </option>
                 </select>
                 <select
-                  name="role"
+                  name="specialty"
                   value={formData.specialty}
                   onChange={handleChange}
                   className="w-[97%] p-1 mb-3 text-primary"
@@ -342,24 +346,10 @@ function SignUp() {
                   <option disabled value="">
                     الاختصاص الطبي
                   </option>
-                  <option
-                    className="text-primary"
-                    value="665de38be9ef4cb7062684e2"
-                  >
-                    باطنية قلبية صدرية
-                  </option>
-                  <option
-                    className="text-primary"
-                    value="665de357e9ef4cb7062684dd"
-                  >
-                    جلدية
-                  </option>
-                  <option
-                    className="text-primary"
-                    value="665de37ce9ef4cb7062684e0"
-                  >
-                    صيدلاني
-                  </option>
+
+                  {dataSpecialty.map((spe) => (
+                    <option value={spe._id}>{spe.name}</option>
+                  ))}
                 </select>
 
                 <select
@@ -402,6 +392,49 @@ function SignUp() {
                   <option value="sulaymaniyah">السليمانية</option>
                   <option value="najaf">النجف</option>
                   <option value="karbala">كربلاء</option>
+                </select>
+
+                <select
+                  name="governorate"
+                  value={formData.governorate}
+                  onChange={handleChange}
+                  className="w-[97%] p-1 my-2 text-primary"
+                >
+                  <option disabled hidden selected value="">
+                    {" "}
+                    الحي
+                  </option>
+                  <option value="حي ميسان ">حي ميسان</option>
+                  <option value="حي كندة ">حي كندة</option>
+                  <option value="17 نموز">17 تموز</option>
+                  <option value="حي المتنبي ">حي المتنبي</option>
+                  <option value=" شارع المثنئ ">شارع المثنئ </option>
+                  <option value="شارع الاسكان"> شارع الاسكان</option>
+                  <option value="شارع الاشتراكي">شارع الاشتراكي</option>
+                  <option value="ابو صخير">ابو صخير</option>
+                  <option value="حي النداء ">حي النداء</option>
+                  <option value="حي الامير">حي الامير</option>
+                  <option value="حي الانصار">حي الانصار</option>
+
+                  <option value="حي الحسين">حي الحسين</option>
+                  <option value="حي العسكري">حي العسكري</option>
+                  <option value="حي الغدير">حي الغدير</option>
+                  <option value="حي الميلاد">حي الميلاد</option>
+                  <option value="حي الجامعة">حي الجامعة</option>
+                  <option value="حي الوفاء">حي الوفاء</option>
+                  <option value="حي المكرمة">حي المكرمة</option>
+                  <option value="حي الجزيرة">حي الجزيرة</option>
+                  <option value="حي الرسالة">حي الرسالة</option>
+                  <option value="حي الشرطة">حي الشرطة</option>
+                  <option value="حي الإسكان">حي الإسكان</option>
+                  <option value="حي النصر">حي النصر</option>
+                  <option value="حي الفرات">حي الفرات</option>
+                  <option value="حي الزهراء">حي الزهراء</option>
+                  <option value="حي المعلمين">حي المعلمين</option>
+                  <option value="حي الجمهورية">حي الجمهورية</option>
+                  <option value="حي الشهداء">حي الشهداء</option>
+                  <option value="حي الكرامة">حي الكرامة</option>
+                  <option value="حي الاسكان">حي الاسكان</option>
                 </select>
               </div>
 

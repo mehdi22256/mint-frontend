@@ -1,101 +1,114 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
+import { FaLocationDot } from "react-icons/fa6";
+import { useSelector, useDispatch } from "react-redux";
+import { getPharmacist } from "../store/user/userSlice";
+import { getSpecilty } from "../store/specialty/specialtySlice";
+import Loading from "../components/Loading";
 
-import xx from "../assets/22.png";
-function Pharmacy() {
+function Doctors() {
+  const [gov, setgov] = useState(null);
+  const dispatch = useDispatch();
+  const info = { gov };
+  useEffect(() => {
+    dispatch(getPharmacist({ info }));
+  }, []);
+  const userdata = useSelector((state) => state.user.pharmacist);
+  console.log("🚀 ~ Doctors ~ userdata:", userdata);
+
   return (
-    <div className="flex flex-col gap-5">
-      <div className="flex flex-wrap gap-10 justify-center md:justify-evenly md:items-center  md:w-[70%]  pt-10">
-        <div className=" flex  items-center  w-[350px] h-12   md:w-[400px]">
-          <button className=" bg-primary rounded-r-lg  border-y-2 border-r-2 flex justify-center items-center w-[10%] h-12">
-            <CiSearch className=" text-white" />
-          </button>
-          <input
-            className="  rounded-l-lg h-12 border-y-2 border-l-2 w-[100%] "
-            type="search"
-            placeholder="ابحث عن الصيدلية"
-          />
+    <div className="flex justify-center items-center">
+      {!userdata ? (
+        <div className="h-[80%] m-72 sm:m-3 md:m-12">
+          {" "}
+          <Loading />
         </div>
-        <div className=" flex justify-center items-center  h-12  w-[90%] md:w-[15%] ">
-          <select
-            name="الاحياء"
-            className=" w-[100%] h-12 border-2 rounded-lg  "
-          >
-            <option value="الحي"> الحي</option>
-            <option value="الامير">الامير</option>
-            <option value="القادسية ">القادسية </option>
-            <option value="الزهراء">الزهراء</option>
-            <option value="الحنانة">الحنانة</option>
-            <option value="المكرمة">المكرمة</option>
-            <option value="المعلمين ">المعلمين</option>
-            <option value="السعد"> السعد</option>
-            <option value="الانصار">الانصار</option>
-          </select>
-        </div>
-      </div>
+      ) : (
+        <div className="flex flex-col justify-between mx-10  ">
+          <div className="md:flex md:justify-around md:items-center  md:w-[100%]">
+            <div className=" flex justify-center items-center  w-[100%] h-16  md:w-[48%]">
+              <button className=" bg-primary rounded-r-lg border-y-2 border-r-2 flex justify-center items-center w-[50px] h-10">
+                <CiSearch className=" text-white text-xl " />
+              </button>
+              <input
+                className="  rounded-l-lg h-10 border-y-2 border-l-2 w-[70%] md:w-[60%] placeholder:px-6 "
+                type="search"
+                placeholder="ابحث عن الصيدلية "
+              />
+            </div>
+            <div className="flex  justify-between  w-[90%] md:w-[42%] ">
+              <div className="  w-[45%] ">
+                <select
+                  name="المحافظة"
+                  className="w-[100%] md:h-10 border-2 rounded-lg  "
+                  onChange={(e) => setgov(e.target.value)}
+                >
+                  <option value="المحافظة" disabled>
+                    {" "}
+                    الحي{" "}
+                  </option>
+                  <option value="حي ميسان ">حي ميسان</option>
+                  <option value="حي كندة ">حي كندة</option>
+                  <option value="17 نموز">17 تموز</option>
+                  <option value="حي المتنبي ">حي المتنبي</option>
+                  <option value=" شارع المثنئ ">شارع المثنئ </option>
+                  <option value="شارع الاسكان"> شارع الاسكان</option>
+                  <option value="شارع الاشتراكي">شارع الاشتراكي</option>
+                  <option value="ابو صخير">ابو صخير</option>
+                  <option value="حي النداء ">حي النداء</option>
+                  <option value="حي الامير">حي الامير</option>
+                  <option value="حي الانصار">حي الانصار</option>
 
-      <div className="flex justify-around  w-[100%] flex-wrap pt-10 pb-10">
-        <div className="flex flex-wrap gap-5 gap-y-5 md:w-[83%] md:mr-4 justify-around mb-2">
-          <div className="border-2 w-32 h-32 bg-secondary  flex justify-center items-center flex-col md:w-60 md:h-60">
-            <img
-              className="w-24 h-20 md:h-[150px] md:w-[150px] rounded-2xl"
-              src={xx}
-              alt=""
-            />
-            <h2>صيدلية الكفاح</h2>
+                  <option value="حي الحسين">حي الحسين</option>
+                  <option value="حي العسكري">حي العسكري</option>
+                  <option value="حي الغدير">حي الغدير</option>
+                  <option value="حي الميلاد">حي الميلاد</option>
+                  <option value="حي الجامعة">حي الجامعة</option>
+                  <option value="حي الوفاء">حي الوفاء</option>
+                  <option value="حي المكرمة">حي المكرمة</option>
+                  <option value="حي الجزيرة">حي الجزيرة</option>
+                  <option value="حي الرسالة">حي الرسالة</option>
+                  <option value="حي الشرطة">حي الشرطة</option>
+                  <option value="حي الإسكان">حي الإسكان</option>
+                  <option value="حي النصر">حي النصر</option>
+                  <option value="حي الفرات">حي الفرات</option>
+                  <option value="حي الزهراء">حي الزهراء</option>
+                  <option value="حي المعلمين">حي المعلمين</option>
+                  <option value="حي الجمهورية">حي الجمهورية</option>
+                  <option value="حي الشهداء">حي الشهداء</option>
+                  <option value="حي الكرامة">حي الكرامة</option>
+                  <option value="حي الاسكان">حي الاسكان</option>
+                </select>
+              </div>
+              <div className=" w-[45%] "></div>
+            </div>
           </div>
-          <div className="border-2 w-32 h-32 bg-secondary flex justify-center items-center flex-col md:w-60 md:h-60">
-            <img
-              className="w-24 h-20 md:h-[150px] md:w-[150px] rounded-2xl"
-              src={xx}
-              alt=""
-            />
-            <h2>صيدلية الكفاح</h2>
-          </div>
-          <div className="border-2 w-32 h-32 bg-secondary flex justify-center items-center flex-col md:w-60 md:h-60">
-            <img
-              className="w-24 h-20 md:h-[150px] md:w-[150px] rounded-2xl"
-              src={xx}
-              alt=""
-            />
-            <h2>صيدلية الكفاح</h2>
-          </div>
-          <div className="border-2 w-32 h-32 bg-secondary flex justify-center items-center flex-col md:w-60 md:h-60">
-            <img
-              className="w-24 h-20 md:h-[150px] md:w-[150px] rounded-2xl"
-              src={xx}
-              alt=""
-            />
-            <h2>صيدلية الكفاح</h2>
-          </div>
-          <div className="border-2 w-32 h-32 bg-secondary flex justify-center items-center flex-col md:w-60 md:h-60">
-            <img
-              className="w-24 h-20 md:h-[150px] md:w-[150px] rounded-2xl"
-              src={xx}
-              alt=""
-            />
-            <h2>صيدلية الكفاح</h2>
-          </div>
-          <div className="border-2 w-32 h-32 bg-secondary flex justify-center items-center flex-col md:w-60 md:h-60">
-            <img
-              className="w-24 h-20 md:h-[150px] md:w-[150px] rounded-2xl"
-              src={xx}
-              alt=""
-            />
-            <h2>صيدلية الكفاح</h2>
-          </div>
-          <div className="border-2 w-32 h-32 bg-secondary flex justify-center items-center flex-col md:w-60 md:h-60">
-            <img
-              className="w-24 h-20 md:h-[150px] md:w-[150px] rounded-2xl"
-              src={xx}
-              alt=""
-            />
-            <h2>صيدلية الكفاح</h2>
+          <div className="flex  flex-wrap gap-24 justify-center mt-20 mb-10  ">
+            {userdata?.map((dr) => (
+              <div className="w-[220px] h-[220px] bg-secondary rounded-md flex  justify-center relative  cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-secondary duration-300">
+                <div className="w-[170px] h-[170px] rounded-full overflow-hidden absolute top-[-65px] shadow-lg">
+                  <img
+                    src={`http://localhost:1000/${dr.image}`}
+                    alt="xx"
+                    className="w-full h-full object-cover object-top "
+                  />
+                </div>
+                <div className="mt-[55%] ">
+                  <h1 className="text-lg font-bold">
+                    {dr.firstName} {dr.lastName}
+                  </h1>
+                  <p className="text-center flex justify-center items-center">
+                    <FaLocationDot className="text-xs mx-1 text-primary " />
+                    {dr.city}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
 
-export default Pharmacy;
+export default Doctors;

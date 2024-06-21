@@ -61,14 +61,67 @@ export const signInReducer = createAsyncThunk(
   }
 );
 
+export const putUser = createAsyncThunk(
+  "User/putUer",
+  async ({ userInfo, id }) => {
+    try {
+      const formData = new FormData();
+      const {
+        username,
+        email,
+        firstName,
+        lastName,
+        clinicLocation,
+        holidays,
+        startTime,
+        endTime,
+        image,
+      } = userInfo;
+
+      formData.append("username", username);
+      formData.append("email", email);
+      formData.append("firstName", firstName);
+      formData.append("lastName", lastName);
+      formData.append("clinicLocation", clinicLocation);
+      formData.append("holidays", holidays);
+      formData.append("startTime", startTime);
+      formData.append("endTime", endTime);
+      formData.append("image", image);
+
+      const res = await axios.put(`http://localhost:1000/user/${id}`, formData);
+      const data = res.data;
+      console.log("🚀 ~ data:", data);
+      if (data) {
+        localStorage.setItem("Token", data);
+        sessionStorage.setItem("Token", data);
+      }
+      return data;
+    } catch (error) {
+      return console.log(error);
+    }
+  }
+);
+
 export const getDoctor = createAsyncThunk(
   "User/getDoctor",
-  async ({ specialty, city }) => {
+  async ({ info }) => {
+    try {
+      const res = await axios.post("http://localhost:1000/user/doctor", info);
+      const data = res.data;
+
+      return data;
+    } catch (error) {
+      return console.log(error);
+    }
+  }
+);
+export const getPharmacist = createAsyncThunk(
+  "User/getPharmacist",
+  async ({ info }) => {
     try {
       const res = await axios.get(
-        "http://localhost:1000/user/doctor",
-        specialty,
-        city
+        "http://localhost:1000/user/pharmacist",
+        info
       );
       const data = res.data;
 
@@ -97,6 +150,7 @@ const initialState = {
   isLogged: false,
   users: null,
   doctors: null,
+  pharmacist: null,
 };
 
 const userSlice = createSlice({
@@ -148,6 +202,21 @@ const userSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload || action.error.message;
     });
+
+    //   putUser
+    builder.addCase(putUser.pending, (state) => {
+      state.error = null;
+    });
+    builder.addCase(putUser.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.data = action.payload;
+      state.error = null;
+    });
+    builder.addCase(putUser.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload || action.error.message;
+    });
+
     // get user data
     builder
       .addCase(getUser.pending, (state) => {
@@ -176,6 +245,22 @@ const userSlice = createSlice({
         state.error = null;
       })
       .addCase(getDoctor.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.error.message;
+      });
+
+    // get pharmacist data
+    builder
+      .addCase(getPharmacist.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(getPharmacist.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.pharmacist = action.payload;
+        state.error = null;
+      })
+      .addCase(getPharmacist.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message;
       });

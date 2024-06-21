@@ -27,9 +27,16 @@
   animation: open-searchMobile 0.5s ease-in-out forwards;
 }
 
-#greduntline{
-  background: rgb(0,0,0);
-  background: linear-gradient(90deg, rgba(0,0,0,0.6974439433976716) 0%, rgba(0,0,0,1) 34%, rgba(0,0,0,1) 65%, rgba(0,0,0,0.7870797977394083) 100%);}
+#greduntline {
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.6974439433976716) 0%,
+    rgba(0, 0, 0, 1) 34%,
+    rgba(0, 0, 0, 1) 65%,
+    rgba(0, 0, 0, 0.7870797977394083) 100%
+  );
+}
 
 @keyframes open-searchMobile {
   0% {
@@ -92,7 +99,6 @@
 }
 
 /*_____________________ animation of loading _____________________*/
-
 
 .loader {
   width: 8em;
@@ -225,4 +231,16 @@
   to {
     stroke-dashoffset: -351.86;
   }
+}
+
+/* ______________scroll____________ */
+::-webkit-scrollbar {
+  width: 15px;
+}
+::-webkit-scrollbar-track {
+  border: #ffff solid 2px;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #377553;
 }

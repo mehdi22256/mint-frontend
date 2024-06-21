@@ -22,9 +22,10 @@ import NewArticle from "./pages/NewArticle";
 import DashBoard from "./pages/DashBoard";
 import InfoPage from "./components/InfoPage";
 import Bookings from "./components/Bookings";
+import Booking from "./components/Booking";
 import DetailedArticle from "./pages/DetailedArticle";
 import Pharamacylocation from "./pages/Pharmacylocation";
-import Doctorlocation from "./pages/DoctorsLocation";
+import DoctorsLocation from "./pages/DoctorsLocation";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -45,7 +46,7 @@ function App() {
           <Route path="/newarticle" element={<NewArticle />} />
           <Route path="/articles/:_id" element={<DetailedArticle />} />
           <Route path="/info" element={<InfoPage />} />
-          <Route path="/booking" element={<Bookings />} />
+          <Route path="/bookings" element={<Bookings />} />
           <Route path="/dashboard" element={<DashBoard />}>
             <Route path="info" element={<InfoPage />} />
             <Route path="booking" element={<Bookings />} />
@@ -56,6 +57,9 @@ function App() {
           <Route path="/signin" element={<Signin />} />
           <Route path="/doctor" element={<Doctors />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/booking" element={<Booking />} />
+
+          <Route path="doctor/:_id" element={<DoctorsLocation />} />
         </Routes>
         <Footer />
       </Provider>

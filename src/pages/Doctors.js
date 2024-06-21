@@ -5,9 +5,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { getDoctor } from "../store/user/userSlice";
 import { getSpecilty } from "../store/specialty/specialtySlice";
 import Loading from "../components/Loading";
+import { useNavigate } from "react-router-dom";
 
 function Doctors() {
   const specialtyData = useSelector((state) => state.specilty.data);
+  const navigate = useNavigate();
 
   const [specialty, setSpecialty] = useState(null);
   const [city, setCityValue] = useState(null);
@@ -92,7 +94,10 @@ function Doctors() {
           </div>
           <div className="flex  flex-wrap gap-24 justify-center mt-20 mb-10 ">
             {userdata?.map((dr) => (
-              <div className="w-[220px] h-[220px] bg-secondary rounded-md flex  justify-center relative  cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-secondary duration-300">
+              <div
+                onClick={() => navigate(`/doctor/${dr?._id}`)}
+                className="w-[220px] h-[220px] bg-secondary rounded-md flex  justify-center relative  cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-secondary duration-300"
+              >
                 <div className="w-[170px] h-[170px] rounded-full overflow-hidden absolute top-[-65px] shadow-lg">
                   <img
                     src={`http://localhost:1000/${dr.image}`}

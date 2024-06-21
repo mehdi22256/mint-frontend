@@ -58,3 +58,9 @@ code {
   font-weight: 900;
   font-style: normal;
 }
+
+#dashBoard a.active {
+  color: white;
+  background-color: #377553;
+  border-radius: 0.75rem;
+}

@@ -10,6 +10,16 @@ const LogOut = () => {
   const user = useSelector((state) => state?.user?.data);
   const [isClicked, setIsClicked] = useState(false);
 
+  const home = () => {
+    setIsClicked(!isClicked);
+    navigate("/dashboard/info");
+  };
+
+  const Article = () => {
+    setIsClicked(!isClicked);
+    navigate("/newarticle");
+  };
+
   const logOut = () => {
     localStorage.removeItem("Token");
     sessionStorage.removeItem("Token");
@@ -28,7 +38,9 @@ const LogOut = () => {
         {isClicked && (
           <div
             id="logOut"
-            className="absolute top-[68px] rounded-lg border-[0.5px] border-black -left-10 h-72 w-56 bg-secondary text-black"
+            className={`absolute top-[68px] rounded-lg border-[0.5px] border-black -left-10 ${
+              user.role === "665de38be9ef4cb7062684e2" ? `h-56` : `h-72`
+            } w-56 bg-secondary text-black`}
           >
             <div className="flex flex-row justify-center items-center gap-5 pt-2">
               <div className=" w-16 h-16">
@@ -46,19 +58,23 @@ const LogOut = () => {
             <hr className="h-[1px] mt-4 bg-black" />
             <div className="flex flex-col justify-center items-center gap-5 mt-5">
               <div
-                onClick={() => navigate("/dashboard/info")}
+                onClick={home}
                 className="flex flex-row w-full h-full py-1 justify-center items-center gap-5 hover:bg-primary cursor-pointer"
               >
                 <img className="w-7" src={medPage} alt="medPage" />
                 <p> الصفحة الرئيسية</p>
               </div>
-              <div
-                onClick={() => navigate("/newarticle")}
-                className="flex flex-row w-full h-full py-1 pl-6 justify-center items-center gap-5 hover:bg-primary cursor-pointer"
-              >
-                <img className="w-7" src={article} alt="article" />
-                <p>انشاء مقال</p>
-              </div>
+
+              {user.role === "665de38be9ef4cb7062684e2" ? null : (
+                <div
+                  onClick={Article}
+                  className="flex flex-row w-full h-full py-1 pl-6 justify-center items-center gap-5 hover:bg-primary cursor-pointer"
+                >
+                  <img className="w-7" src={article} alt="article" />
+                  <p>انشاء مقال</p>
+                </div>
+              )}
+
               <div
                 onClick={logOut}
                 className="flex flex-row w-full h-full py-1 justify-center items-center gap-5 hover:bg-primary cursor-pointer"

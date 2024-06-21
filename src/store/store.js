@@ -4,6 +4,9 @@ import blogReducer from "./blog/blogSlice";
 import categoryReducer from "./category/categorySlice";
 import commentReducer from "./comment/commentSlice";
 import speciltyReducer from "./specialty/specialtySlice";
+import chatReducer from "./chat/chatSlice";
+import chatRoomReducer from "./chatRoom/chatRoomSlice";
+
 const store = configureStore({
   reducer: {
     user: UserReducer,
@@ -11,6 +14,8 @@ const store = configureStore({
     category: categoryReducer,
     comment: commentReducer,
     specilty: speciltyReducer,
+    chat: chatReducer,
+    chatRoom: chatRoomReducer,
   },
 });
 

@@ -6,6 +6,9 @@ import commentReducer from "./comment/commentSlice";
 import speciltyReducer from "./specialty/specialtySlice";
 import bookingReducer from "./booking/bookingSlice";
 import locationReducer from "./location/locationSlice";
+import chatReducer from "./chat/chatSlice";
+import chatRoomReducer from "./chatRoom/chatRoomSlice";
+
 const store = configureStore({
   reducer: {
     user: UserReducer,
@@ -15,6 +18,8 @@ const store = configureStore({
     specilty: speciltyReducer,
     booking: bookingReducer,
     location: locationReducer,
+    chat: chatReducer,
+    chatRoom: chatRoomReducer,
   },
 });
 

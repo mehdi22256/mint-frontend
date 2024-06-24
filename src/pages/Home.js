@@ -86,7 +86,7 @@ const Home = () => {
             </div>
 
             <div
-              onClick={() => navigate("/doctors")}
+              onClick={() => navigate("/doctor")}
               className="flex flex-col justify-center items-center text-center gap-2 p-3 lg:gap-5 border-2 border-gray-300 w-1/3 md:w-[25%] lg:w-56 lg:h-72 bg-white rounded-lg cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-secondary duration-300"
             >
               <img

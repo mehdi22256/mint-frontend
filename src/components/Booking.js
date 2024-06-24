@@ -1,43 +1,57 @@
 import React, { useEffect, useState } from "react";
-import Calendar, { MonthView } from "react-calendar";
+import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import { useDispatch, useSelector } from "react-redux";
+import { addBooking, getBooking } from "../store/booking/bookingSlice";
 
 function Booking({ booking, setbooking, drId }) {
   const [value, setValue] = useState(new Date());
   const [date, setDate] = useState();
+  const [disabledTimes, setDisabledTimes] = useState([]);
+  const [refresh, setRefresh] = useState(false);
 
-  const disabledDates = [new Date(2024, 5, 21), new Date(2024, 5, 25)];
+  const dispatch = useDispatch();
+  const bookingDate = useSelector((state) => state.booking.data);
+  const drfilter = bookingDate.filter((dr) => dr.doctor === drId);
+  console.log("🚀 ~ Booking ~ drfilter:", drfilter);
 
   const formatDate = (date) => {
     const day = date.getDate();
     const month = date.getMonth() + 1;
     const year = date.getFullYear();
-    return `${year},${month},${day}`;
+    return `${year}-${month}-${day}`;
   };
 
   useEffect(() => {
     setDate(formatDate(value));
   }, [value]);
 
-  // _________________
+  useEffect(() => {
+    if (date) {
+      const filteredBookings = drfilter?.filter(
+        (booking) => booking.date === date
+      );
+      const bookedTimes = filteredBookings?.map((booking) => booking.time);
+      setDisabledTimes(bookedTimes);
+    }
+  }, [date, bookingDate, refresh]);
+
+  useEffect(() => {
+    dispatch(getBooking(drId));
+  }, [dispatch, drId]);
 
   const [time1, setTime1] = useState({
     hour: "4",
     minute: "12",
-    period: "pm",
+    period: "PM",
   });
   const [time2, setTime2] = useState({
     hour: "11",
     minute: "10",
-    period: "pm",
+    period: "PM",
   });
   const [interval, setInterval] = useState(25);
   const [resultTimes, setResultTimes] = useState([]);
-  console.log("🚀 ~ Booking ~ resultTimes:", resultTimes);
-
-  const formatTime = (time) => {
-    return `${time.hour}:${time.minute} ${time.period}`;
-  };
 
   const convertTo24Hour = (time) => {
     let hours = parseInt(time.hour, 10);
@@ -77,54 +91,113 @@ function Booking({ booking, setbooking, drId }) {
 
   useEffect(() => {
     generateTimes();
-  }, []);
+  }, [time1, time2, interval]);
+
+  useEffect(() => {
+    const updateResultTimes = () => {
+      if (disabledTimes?.length > 0) {
+        const newResultTimes = resultTimes.filter(
+          (time) => !disabledTimes.includes(time)
+        );
+        setResultTimes(newResultTimes);
+      } else {
+        generateTimes();
+      }
+    };
+    updateResultTimes();
+  }, [disabledTimes, date, refresh]);
+
+  const [name, setName] = useState("");
+  const [age, setAge] = useState("");
+  const [gender, setGender] = useState("");
+  const [valueTime, setValueTime] = useState("");
+  const token =
+    localStorage.getItem("Token") || sessionStorage.getItem("Token");
+  const info = {
+    time: valueTime,
+    date: date,
+    doctor: drId,
+    age: age,
+    gender: gender,
+    name: name,
+  };
+
+  const handleBooking = () => {
+    dispatch(addBooking({ info, token })).then(() => {
+      setRefresh(!refresh);
+    });
+    setbooking(!booking);
+  };
+
   if (!booking) {
     return null;
   }
 
   return (
-    <div className="fixed inset-0 bg-black backdrop-blur-sm bg-opacity-10 flex justify-center items-center ">
-      <div className="  flex flex-col justify-center items-center md:mt-[5%]  bg-primary bg-opacity-20 p-3 rounded-md">
+    <div className="fixed inset-0 bg-black backdrop-blur-sm bg-opacity-10 flex justify-center items-center">
+      <div className="flex flex-col justify-center items-center md:mt-[5%] bg-secondary p-3 rounded-lg">
         <div className="m-3 mx-4">
           <input
-            placeholder="الاسم "
-            className=" border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 font-sans text-base font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-gray-900 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50 placeholder:text-black"
+            onChange={(e) => setName(e.target.value)}
+            placeholder="الاسم"
+            className="border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 font-sans text-base font-normal text-blue-gray-700 outline-none transition-all placeholder-shown:border-blue-gray-200 focus:border-gray-900 focus:outline-none disabled:border-0 disabled:bg-blue-gray-50 placeholder:text-black"
           />
           <input
-            placeholder="العمر "
-            className=" border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 font-sans text-base font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-gray-900 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50 placeholder:text-black"
-          />{" "}
-          <select className=" border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 font-sans text-base font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-gray-900 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50 placeholder:text-black">
+            onChange={(e) => setAge(e.target.value)}
+            placeholder="العمر"
+            className="border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 font-sans text-base font-normal text-blue-gray-700 outline-none transition-all placeholder-shown:border-blue-gray-200 focus:border-gray-900 focus:outline-none disabled:border-0 disabled:bg-blue-gray-50 placeholder:text-black"
+          />
+          <select
+            onChange={(e) => setGender(e.target.value)}
+            className="border-b border-blue-gray-200 bg-transparent pt-4 pb-1.5 font-sans text-base font-normal text-blue-gray-700 outline-none transition-all placeholder-shown:border-blue-gray-200 focus:border-gray-900 focus:outline-none disabled:border-0 disabled:bg-blue-gray-50 placeholder:text-black"
+          >
             <option disabled hidden selected>
-              الحنس
+              الجنس
             </option>
-
-            <option>ذكر</option>
-            <option>انثئ</option>
+            <option value={"ذكر"}>ذكر</option>
+            <option value={"أنثى"}>أنثى</option>
           </select>
-        </div>{" "}
+        </div>
         <Calendar
-          className="m-auto text-xl mb-4 "
+          className="m-auto text-xl mb-4"
           onChange={setValue}
           value={value}
         />
         <div
-          className="flex  justify-center gap-3 w-[400px] overflow-auto "
+          className="flex justify-center gap-3 w-[400px] overflow-auto"
           id="scroll"
         >
-          {resultTimes?.map((time) => (
-            <button class=" border-2 border- rounded-lg  px-6 py-3 text-sm hover:border-primary cursor-pointer transition">
-              {time}
-            </button>
-          ))}
-        </div>{" "}
+          {resultTimes.map((time) =>
+            disabledTimes?.includes(time) ? (
+              <h1>aaaaaaaaaaaaaaaaaa</h1>
+            ) : (
+              <button
+                key={time}
+                value={time}
+                onClick={(e) => setValueTime(e.target.value)}
+                disabled={disabledTimes.includes(time)}
+                className={`border-2 rounded-lg px-6 py-3 text-sm hover:border-primary cursor-pointer transition ${
+                  disabledTimes.includes(time) ? " cursor-not-allowed" : ""
+                }`}
+              >
+                {time}
+              </button>
+            )
+          )}
+        </div>
+        <button
+          onClick={handleBooking}
+          className="bg-primary border-2 rounded-md border-primary w-96 my-5 text-xl text-white hover:bg-inherit hover:text-primary hover:border-2 hover:border-primary"
+        >
+          حجز
+        </button>
         <button
           onClick={() => {
             setbooking(!booking);
           }}
-          className="bg-primary border-2 rounded-md border-primary w-96 my-5 text-xl text-white hover:bg-inherit  hover:border-2 hover:border-primary "
+          className="bg-primary border-2 rounded-md border-primary w-96 my- text-xl text-white hover:bg-inherit hover:text-primary hover:border-2 hover:border-primary"
         >
-          حجز
+          رجوع
         </button>
       </div>
     </div>

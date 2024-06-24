@@ -252,7 +252,7 @@ const userSlice = createSlice({
     // get pharmacist data
     builder
       .addCase(getPharmacist.pending, (state) => {
-        state.isLoading = true;
+        state.isLoading = false;
         state.error = null;
       })
       .addCase(getPharmacist.fulfilled, (state, action) => {

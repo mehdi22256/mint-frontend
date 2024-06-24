@@ -5,20 +5,22 @@ import { useSelector, useDispatch } from "react-redux";
 import { getPharmacist } from "../store/user/userSlice";
 import { getSpecilty } from "../store/specialty/specialtySlice";
 import Loading from "../components/Loading";
+import { useNavigate } from "react-router-dom";
 
 function Doctors() {
   const [gov, setgov] = useState(null);
   const dispatch = useDispatch();
+  const navigator = useNavigate();
   const info = { gov };
   useEffect(() => {
     dispatch(getPharmacist({ info }));
   }, []);
-  const userdata = useSelector((state) => state.user.pharmacist);
-  console.log("🚀 ~ Doctors ~ userdata:", userdata);
+  const allPharamacy = useSelector((state) => state.user.pharmacist);
+  console.log("pppppppppp", allPharamacy);
 
   return (
     <div className="flex justify-center items-center">
-      {!userdata ? (
+      {!allPharamacy ? (
         <div className="h-[80%] m-72 sm:m-3 md:m-12">
           {" "}
           <Loading />
@@ -84,22 +86,25 @@ function Doctors() {
             </div>
           </div>
           <div className="flex  flex-wrap gap-24 justify-center mt-20 mb-10  ">
-            {userdata?.map((dr) => (
-              <div className="w-[220px] h-[220px] bg-secondary rounded-md flex  justify-center relative  cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-secondary duration-300">
+            {allPharamacy?.map((ph) => (
+              <div
+                onClick={() => navigator(`/pharmacy/${ph?._id}`)}
+                className="w-[220px] h-[220px] bg-secondary rounded-md flex  justify-center relative  cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-secondary duration-300"
+              >
                 <div className="w-[170px] h-[170px] rounded-full overflow-hidden absolute top-[-65px] shadow-lg">
                   <img
-                    src={`http://localhost:1000/${dr.image}`}
+                    src={`http://localhost:1000/${ph.image}`}
                     alt="xx"
                     className="w-full h-full object-cover object-top "
                   />
                 </div>
                 <div className="mt-[55%] ">
                   <h1 className="text-lg font-bold">
-                    {dr.firstName} {dr.lastName}
+                    {ph.firstName} {ph.lastName}
                   </h1>
                   <p className="text-center flex justify-center items-center">
                     <FaLocationDot className="text-xs mx-1 text-primary " />
-                    {dr.city}
+                    {ph.city}
                   </p>
                 </div>
               </div>

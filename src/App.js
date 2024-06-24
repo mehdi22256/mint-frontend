@@ -47,7 +47,7 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/articles" element={<Chat />} />
+          <Route path="/articles" element={<Articles />} />
           <Route path="/newarticle" element={<NewArticle />} />
           <Route path="/articles/:_id" element={<DetailedArticle />} />
           <Route path="/info" element={<InfoPage />} />
@@ -65,6 +65,7 @@ function App() {
           <Route path="/booking" element={<Booking />} />
 
           <Route path="doctor/:_id" element={<DoctorsLocation />} />
+          <Route path="pharmacy/:_id" element={<Pharamacylocation />} />
         </Routes>
         <Footer />
       </Provider>

@@ -22,7 +22,7 @@ function Doctors() {
   useEffect(() => {
     dispatch(getDoctor({ info }));
   }, [city, specialty, dispatch]);
-  const userdata = useSelector((state) => state.user.users);
+  const userdata = useSelector((state) => state.user.doctors);
   console.log("🚀 ~ Doctors ~ userdata:", userdata);
 
   return (

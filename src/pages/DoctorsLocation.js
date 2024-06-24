@@ -7,10 +7,10 @@ import Booking from "../components/Booking";
 function DoctorsLocation() {
   const { _id } = useParams();
   const [booking, setbooking] = useState(false);
-  const AllDoctors = useSelector((state) => state.user?.users);
-  console.log("🚀 ~ DoctorsLocation ~ AllDoctors:", AllDoctors);
+  const AllDoctors = useSelector((state) => state.user?.doctors);
+  // console.log("🚀 ~ DoctorsLocation ~ AllDoctors:", AllDoctors);
   const doctor = AllDoctors?.find((dr) => dr._id === _id);
-  console.log("🚀 ~ DoctorsLocation ~ doctor:", doctor);
+  // console.log("🚀 ~ DoctorsLocation ~ doctor:", doctor);
 
   return (
     <div className="h-full w-full pt-8 pb-4 gap-5  flex flex-col items-center justify-center">

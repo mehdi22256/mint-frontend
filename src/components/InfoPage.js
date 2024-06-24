@@ -1,11 +1,11 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import { putUser } from "../store/user/userSlice";
+import Loading from "../components/Loading";
 
 const InfoPage = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state?.user?.data);
-  console.log("🚀 ~ InfoPage ~ user:", user);
   const [firstName, setFirstName] = useState(user?.firstName);
   const [lastName, setLastName] = useState(user?.lastName);
   const [username, setUsername] = useState(user?.username);
@@ -33,6 +33,14 @@ const InfoPage = () => {
     dispatch(putUser({ userInfo, id }));
   };
 
+  if (!user) {
+    return (
+      <div className="flex justify-center items-center">
+        <Loading />
+      </div>
+    );
+  }
+
   return (
     <div>
       <form onSubmit={put} className="flex flex-col p-5 gap-3">
@@ -49,7 +57,7 @@ const InfoPage = () => {
                 <input
                   type="file"
                   className="hidden"
-                  onChange={(e) => setImage(e.target.value)}
+                  onChange={(e) => setImage(e.target.files[0])}
                 />
                 تغيير الصورة
               </p>

@@ -5,6 +5,7 @@ const initialState = {
   loading: false,
   data: null,
   error: null,
+  get: null,
 };
 
 export const fetchChats = createAsyncThunk("chat/fetchChats", async () => {
@@ -28,7 +29,7 @@ export const chatSlice = createSlice({
     });
     builder.addCase(fetchChats.fulfilled, (state, action) => {
       state.loading = false;
-      state.data = action.payload;
+      state.get = action.payload;
       state.error = "";
     });
     builder.addCase(fetchChats.rejected, (state, action) => {

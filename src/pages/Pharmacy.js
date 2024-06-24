@@ -7,7 +7,7 @@ import { getSpecilty } from "../store/specialty/specialtySlice";
 import Loading from "../components/Loading";
 import { useNavigate } from "react-router-dom";
 
-function Doctors() {
+function Pharmacy() {
   const [gov, setgov] = useState(null);
   const dispatch = useDispatch();
   const navigator = useNavigate();
@@ -116,4 +116,4 @@ function Doctors() {
   );
 }
 
-export default Doctors;
+export default Pharmacy;

@@ -32,6 +32,11 @@ const DashBoard = () => {
               معلومات الحساب
             </p>
           </NavLink>
+          <NavLink to={"messages"}>
+            <p className="text-xl font-semibold hover:underline cursor-pointer p-3">
+              الرسائل
+            </p>
+          </NavLink>
 
           <NavLink to={"booking"}>
             <p className="text-xl font-semibold hover:underline cursor-pointer p-3">

@@ -26,6 +26,7 @@ import Booking from "./components/Booking";
 import DetailedArticle from "./pages/DetailedArticle";
 import Pharamacylocation from "./pages/Pharmacylocation";
 import DoctorsLocation from "./pages/DoctorsLocation";
+import { getBooking } from "./store/booking/bookingSlice";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -34,6 +35,7 @@ function App() {
     dispatch(getUser());
     dispatch(fetchCategories());
     dispatch(getComments());
+    dispatch(getBooking());
   }, [dispatch]);
 
   return (

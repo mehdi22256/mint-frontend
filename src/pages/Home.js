@@ -8,10 +8,15 @@ import search from "../assets/search.png";
 import arrow from "../assets/arrow.png";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useState } from "react";
+import { Map } from "leaflet";
+import HomeMap from "../components/HomeMap";
 
 const Home = () => {
   const blogs = useSelector((state) => state?.blog?.data);
   const navigate = useNavigate();
+
+  const [showMap, setShowMap] = useState(false);
 
   return (
     <div className="w-full p-3 lg:p-14">
@@ -97,19 +102,30 @@ const Home = () => {
       </div>
 
       {/* pharmacies */}
-      
+
       <div className="flex flex-row justify-center lg:items-center bg-secondary py-4 lg:py-16 rounded-xl lg:mt-10">
-        <div className="hidden lg:flex w-1/3">
-          <img src={pic2} alt="pharmacy" />
-        </div>
-        <div className="flex flex-col justify-center items-center gap-10 lg:w-1/2 text-center">
-          <p className="text-primary text-3xl font-semibold lg:text-5xl">
-            لعرض الصيدليات المتواجدة في منطقتك اضغط على الزر
-          </p>
-          <button className="bg-primary text-white w-max p-3 px-5 rounded-lg hover:bg-green-800 hover:-translate-y-1 hover:scale-110 delay-150 duration-300">
-            عرض الصيدليات
-          </button>
-        </div>
+        {showMap ? (
+          <div className="z-40 w-[100%] h-[100%] transform">
+            <HomeMap />
+          </div>
+        ) : (
+          <div className="flex justify-center">
+            <div className="hidden lg:flex w-1/3">
+              <img src={pic2} alt="pharmacy" />
+            </div>
+            <div className="flex flex-col justify-center items-center gap-10 lg:w-1/2 text-center">
+              <p className="text-primary text-3xl font-semibold lg:text-5xl">
+                لعرض الصيدليات المتواجدة في منطقتك اضغط على الزر
+              </p>
+              <button
+                onClick={() => setShowMap(!showMap)}
+                className="bg-primary text-white w-max p-3 px-5 rounded-lg hover:bg-green-800 hover:-translate-y-1 hover:scale-110 delay-150 duration-300"
+              >
+                عرض الصيدليات
+              </button>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* articles */}

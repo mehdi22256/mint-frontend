@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Doctorimg from "../assets/pearson.jpg";
 import mapimg from "../assets/map 1.png";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -8,9 +7,7 @@ function DoctorsLocation() {
   const { _id } = useParams();
   const [booking, setbooking] = useState(false);
   const AllDoctors = useSelector((state) => state.user?.users);
-  console.log("🚀 ~ DoctorsLocation ~ AllDoctors:", AllDoctors);
   const doctor = AllDoctors?.find((dr) => dr._id === _id);
-  console.log("🚀 ~ DoctorsLocation ~ doctor:", doctor);
 
   return (
     <div className="h-full w-full pt-8 pb-4 gap-5  flex flex-col items-center justify-center">
@@ -28,7 +25,7 @@ function DoctorsLocation() {
           </p>
           <p className="break-words">
             {" "}
-            المكان :{doctor?.governorate}/{doctor.clinicLocation}
+            المكان :{doctor?.governorate}/{doctor?.clinicLocation}
           </p>
           <p className="break-words"> اوقات الدوام: حسب المزاج</p>
           <p className="break-words pb-5"> رقم الهاتف : 000777555</p>
@@ -72,9 +69,7 @@ function DoctorsLocation() {
             حجز
           </button>
         </div>
-        <div className="lg:w-[60%] lg:h-auto order-2 flex items-center justify-center">
-          <img src={mapimg} className="w-[100%]" alt="" />
-        </div>
+        <div className="lg:w-[60%] lg:h-auto order-2 flex items-center justify-center"></div>
         <Booking booking={booking} setbooking={setbooking} drId={_id} />
       </div>
 

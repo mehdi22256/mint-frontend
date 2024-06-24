@@ -6,7 +6,7 @@ import { getPharmacist } from "../store/user/userSlice";
 import { getSpecilty } from "../store/specialty/specialtySlice";
 import Loading from "../components/Loading";
 
-function Doctors() {
+function Pharmacist() {
   const [gov, setgov] = useState(null);
   const dispatch = useDispatch();
   const info = { gov };
@@ -43,7 +43,7 @@ function Doctors() {
                   className="w-[100%] md:h-10 border-2 rounded-lg  "
                   onChange={(e) => setgov(e.target.value)}
                 >
-                  <option value="المحافظة" disabled>
+                  <option value="المحافظة" disabled selected hidden>
                     {" "}
                     الحي{" "}
                   </option>
@@ -111,4 +111,4 @@ function Doctors() {
   );
 }
 
-export default Doctors;
+export default Pharmacist;

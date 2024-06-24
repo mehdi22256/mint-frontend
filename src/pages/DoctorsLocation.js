@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Booking from "../components/Booking";
 import Chat from "../components/Chat";
+import Comment from "../components/Comment";
 function DoctorsLocation() {
   const { _id } = useParams();
   const [booking, setbooking] = useState(false);
@@ -108,6 +109,7 @@ function DoctorsLocation() {
         setIsChating={setIsChating}
         doctor={getDoctor}
       />
+      <Comment _id={_id} />
     </div>
   );
 }

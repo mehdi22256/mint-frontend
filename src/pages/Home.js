@@ -8,10 +8,20 @@ import search from "../assets/search.png";
 import arrow from "../assets/arrow.png";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-
+import { useState } from "react";
 const Home = () => {
-  const blogs = useSelector((state) => state?.blog?.data);
   const navigate = useNavigate();
+  const [searching, setSearching] = useState("");
+  const allDoctors = useSelector((state) => state.user?.users);
+
+  const foundDoctor = (e) => {
+    e.preventDefault();
+    const doctor = allDoctors.find((doctor) => doctor.firstName === searching);
+    const doctorId = doctor._id;
+    navigate(`/doctor/${doctorId}`);
+  };
+
+  const blogs = useSelector((state) => state?.blog?.data);
 
   return (
     <div className="w-full p-3 lg:p-14">
@@ -37,17 +47,20 @@ const Home = () => {
                   بوابتك الصحية الموثوقة
                 </p>
               </div>
-              <form className="flex flex-row-reverse">
+              <form onSubmit={foundDoctor} className="flex flex-row-reverse">
                 <input
+                  onChange={(e) => setSearching(e.target.value)}
                   className="pr-2 rounded-bl-lg rounded-tl-lg w-64 md:w-96 lg:w-96 h-12 border border-black"
                   type="search"
                   placeholder="ابحث عن طبيبك..."
                 />
-                <img
-                  className="rounded-br-lg rounded-tr-lg bg-primary h-12 w-12 p-2 cursor-pointer"
-                  src={search}
-                  alt="search"
-                />
+                <button type="submit">
+                  <img
+                    className="rounded-br-lg rounded-tr-lg bg-primary h-12 w-12 p-2 cursor-pointer"
+                    src={search}
+                    alt="search"
+                  />
+                </button>
               </form>
             </div>
           </div>

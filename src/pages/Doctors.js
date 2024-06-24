@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { FaLocationDot } from "react-icons/fa6";
 import { useSelector, useDispatch } from "react-redux";
@@ -35,7 +35,10 @@ function Doctors() {
       ) : (
         <div className="flex flex-col justify-between mx-10  ">
           <div className="md:flex md:justify-around md:items-center  md:w-[100%]">
-            <div className=" flex justify-center items-center  w-[100%] h-16  md:w-[48%]">
+            <div
+              id="search"
+              className=" flex justify-center items-center  w-[100%] h-16  md:w-[48%]"
+            >
               <button className=" bg-primary rounded-r-lg border-y-2 border-r-2 flex justify-center items-center w-[50px] h-10">
                 <CiSearch className=" text-white text-xl " />
               </button>

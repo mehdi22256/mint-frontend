@@ -14,6 +14,7 @@ function Chat({
   lastPatient,
   patientId,
 }) {
+  console.log("🚀 ~ firstPatient:", firstPatient);
   console.log("🚀 ~ patientId:", patientId);
   const dispatch = useDispatch();
   const user = useSelector((state) => state?.user?.data);

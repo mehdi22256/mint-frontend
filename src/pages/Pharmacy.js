@@ -6,7 +6,7 @@ import { getPharmacist } from "../store/user/userSlice";
 import { getSpecilty } from "../store/specialty/specialtySlice";
 import Loading from "../components/Loading";
 
-function Doctors() {
+function Pharmacy() {
   const [gov, setgov] = useState(null);
   const dispatch = useDispatch();
   const info = { gov };
@@ -111,4 +111,4 @@ function Doctors() {
   );
 }
 
-export default Doctors;
+export default Pharmacy;

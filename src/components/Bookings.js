@@ -12,14 +12,14 @@ const Bookings = () => {
           <p className="ml-8 lg:ml-10">ذكر</p>
           <p>12:00</p>
         </div>
-        <div className="hidden lg:flex flex-row-reverse items-center justify-center gap-5 pr-3">
+        {/* <div className="hidden lg:flex flex-row-reverse items-center justify-center gap-5 pr-3">
           <button className="bg-green-700 p-1 text-white hover:bg-green-800 rounded-lg">
             موافقة
           </button>
           <button className="bg-red-700 p-1 text-white hover:bg-red-800 rounded-lg">
             رفض
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

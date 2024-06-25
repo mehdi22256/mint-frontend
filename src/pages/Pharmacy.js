@@ -3,33 +3,35 @@ import { CiSearch } from "react-icons/ci";
 import { FaLocationDot } from "react-icons/fa6";
 import { useSelector, useDispatch } from "react-redux";
 import { getPharmacist } from "../store/user/userSlice";
-import { getSpecilty } from "../store/specialty/specialtySlice";
+// import { getSpecilty } from "../store/specialty/specialtySlice";
 import Loading from "../components/Loading";
 import { useNavigate } from "react-router-dom";
 
 function Pharmacy() {
-  const [gov, setgov] = useState(null);
+  const [governorate, setGovernorate] = useState(null);
   const dispatch = useDispatch();
   const navigator = useNavigate();
-  const info = { gov };
+
+  const info = { governorate };
+
   useEffect(() => {
     dispatch(getPharmacist({ info }));
-  }, []);
+  }, [governorate, dispatch]);
   const allPharamacy = useSelector((state) => state.user.pharmacist);
   console.log("pppppppppp", allPharamacy);
 
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex justify-center items-center ">
       {!allPharamacy ? (
         <div className="h-[80%] m-72 sm:m-3 md:m-12">
           {" "}
           <Loading />
         </div>
       ) : (
-        <div className="flex flex-col justify-between mx-10  ">
-          <div className="md:flex md:justify-around md:items-center  md:w-[100%]">
-            <div className=" flex justify-center items-center  w-[100%] h-16  md:w-[48%]">
-              <button className=" bg-primary rounded-r-lg border-y-2 border-r-2 flex justify-center items-center w-[50px] h-10">
+        <div className="flex flex-col justify-between mx-10 w-[100%]">
+          <div className="md:flex md:justify-around md:items-center  md:w-[100%] ">
+            <div className=" flex justify-center items-center  w-[100%] h-16  md:w-[48%] ">
+              <button className=" bg-primary rounded-r-lg border-y-2 border-r-2 flex justify-center items-center w-[50px] h-10 ">
                 <CiSearch className=" text-white text-xl " />
               </button>
               <input
@@ -43,7 +45,7 @@ function Pharmacy() {
                 <select
                   name="المحافظة"
                   className="w-[100%] md:h-10 border-2 rounded-lg  "
-                  onChange={(e) => setgov(e.target.value)}
+                  onChange={(e) => setGovernorate(e.target.value)}
                 >
                   <option value="المحافظة" disabled>
                     {" "}
@@ -104,7 +106,7 @@ function Pharmacy() {
                   </h1>
                   <p className="text-center flex justify-center items-center">
                     <FaLocationDot className="text-xs mx-1 text-primary " />
-                    {ph.city}
+                    {ph.governorate}
                   </p>
                 </div>
               </div>

@@ -13,11 +13,13 @@ function Doctors() {
 
   const [specialty, setSpecialty] = useState(null);
   const [city, setCityValue] = useState(null);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getSpecilty());
   }, []);
+
   const info = { specialty, city };
   useEffect(() => {
     dispatch(getDoctor({ info }));

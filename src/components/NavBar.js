@@ -33,7 +33,7 @@ const NavBar = () => {
           <li className="cursor-pointer hover:underline">
             <Link to={"/doctor"}>الاطباء</Link>
           </li>
-          <li className="cursor-pointer">
+          {/* <li className="cursor-pointer">
             <form className="relative">
               <img
                 src={searching}
@@ -51,8 +51,8 @@ const NavBar = () => {
                 }  absolute left-10 bottom-[5px] bg-secondary w-[380px] h-10 rounded-lg pr-3 text-black`}
               />
             </form>
-          </li>
-          <div className=" pl-80">
+          </li> */}
+          <div className=" pl-96">
             <Link className="flex flex-row-reverse items-center" to={"/"}>
               <p className="text-3xl font-bold">نعناع</p>
               <img className="w-16 cursor-pointer" src={mintNav} alt="mint" />

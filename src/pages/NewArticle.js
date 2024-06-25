@@ -16,6 +16,7 @@ const NewArticle = () => {
 
   const token =
     localStorage.getItem("Token") || sessionStorage.getItem("Token");
+  console.log(token);
   const createBlog = (e) => {
     e.preventDefault();
     const post = {

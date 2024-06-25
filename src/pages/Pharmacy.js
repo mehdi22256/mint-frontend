@@ -47,7 +47,7 @@ function Pharmacy() {
                   className="w-[100%] md:h-10 border-2 rounded-lg  "
                   onChange={(e) => setGovernorate(e.target.value)}
                 >
-                  <option value="المحافظة" disabled>
+                  <option value="المحافظة" disabled selected hidden>
                     {" "}
                     الحي{" "}
                   </option>

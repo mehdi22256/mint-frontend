@@ -8,10 +8,25 @@ import search from "../assets/search.png";
 import arrow from "../assets/arrow.png";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useState } from "react";
+import { Map } from "leaflet";
+import HomeMap from "../components/HomeMap";
 
 const Home = () => {
-  const blogs = useSelector((state) => state?.blog?.data);
   const navigate = useNavigate();
+  const [searching, setSearching] = useState("");
+  const allDoctors = useSelector((state) => state.user?.users);
+
+  const foundDoctor = (e) => {
+    e.preventDefault();
+    const doctor = allDoctors.find((doctor) => doctor.firstName === searching);
+    const doctorId = doctor._id;
+    navigate(`/doctor/${doctorId}`);
+  };
+
+  const blogs = useSelector((state) => state?.blog?.data);
+
+  const [showMap, setShowMap] = useState(false);
 
   return (
     <div className="w-full p-3 lg:p-14">
@@ -37,17 +52,20 @@ const Home = () => {
                   بوابتك الصحية الموثوقة
                 </p>
               </div>
-              <form className="flex flex-row-reverse">
+              <form onSubmit={foundDoctor} className="flex flex-row-reverse">
                 <input
+                  onChange={(e) => setSearching(e.target.value)}
                   className="pr-2 rounded-bl-lg rounded-tl-lg w-64 md:w-96 lg:w-96 h-12 border border-black"
                   type="search"
                   placeholder="ابحث عن طبيبك..."
                 />
-                <img
-                  className="rounded-br-lg rounded-tr-lg bg-primary h-12 w-12 p-2 cursor-pointer"
-                  src={search}
-                  alt="search"
-                />
+                <button type="submit">
+                  <img
+                    className="rounded-br-lg rounded-tr-lg bg-primary h-12 w-12 p-2 cursor-pointer"
+                    src={search}
+                    alt="search"
+                  />
+                </button>
               </form>
             </div>
           </div>
@@ -99,17 +117,28 @@ const Home = () => {
       {/* pharmacies */}
 
       <div className="flex flex-row justify-center lg:items-center bg-secondary py-4 lg:py-16 rounded-xl lg:mt-10">
-        <div className="hidden lg:flex w-1/3">
-          <img src={pic2} alt="pharmacy" />
-        </div>
-        <div className="flex flex-col justify-center items-center gap-10 lg:w-1/2 text-center">
-          <p className="text-primary text-3xl font-semibold lg:text-5xl">
-            لعرض الصيدليات المتواجدة في منطقتك اضغط على الزر
-          </p>
-          <button className="bg-primary text-white w-max p-3 px-5 rounded-lg hover:bg-green-800 hover:-translate-y-1 hover:scale-110 delay-150 duration-300">
-            عرض الصيدليات
-          </button>
-        </div>
+        {showMap ? (
+          <div className="z-40 w-[100%] h-[100%] transform">
+            <HomeMap />
+          </div>
+        ) : (
+          <div className="flex justify-center">
+            <div className="hidden lg:flex w-1/3">
+              <img src={pic2} alt="pharmacy" />
+            </div>
+            <div className="flex flex-col justify-center items-center gap-10 lg:w-1/2 text-center">
+              <p className="text-primary text-3xl font-semibold lg:text-5xl">
+                لعرض الصيدليات المتواجدة في منطقتك اضغط على الزر
+              </p>
+              <button
+                onClick={() => setShowMap(!showMap)}
+                className="bg-primary text-white w-max p-3 px-5 rounded-lg hover:bg-green-800 hover:-translate-y-1 hover:scale-110 delay-150 duration-300"
+              >
+                عرض الصيدليات
+              </button>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* articles */}

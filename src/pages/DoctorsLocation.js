@@ -6,7 +6,6 @@ import Loading from "../components/Loading";
 import Booking from "../components/Booking";
 import Chat from "../components/Chat";
 import Comment from "../components/Comment";
-import HomeMap from "../components/HomeMap";
 import PageMap from "../components/PageMap";
 
 function DoctorsLocation() {
@@ -38,11 +37,7 @@ function DoctorsLocation() {
           <img
             className="w-[50%] mx-auto rounded-2xl"
             alt={getDoctor?.firstName}
-            src={
-              getDoctor?.image
-                ? `http://localhost:1000/${getDoctor?.image}`
-                : Doctorimg
-            }
+            src={getDoctor?.image ? `${getDoctor?.image}` : Doctorimg}
           />
         </div>
         <div className="w-full text-center text-lg h-[60%] pt-4 text-black font-semibold leading-[50px]">

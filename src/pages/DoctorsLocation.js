@@ -7,19 +7,24 @@ import Booking from "../components/Booking";
 import Chat from "../components/Chat";
 import Comment from "../components/Comment";
 import PageMap from "../components/PageMap";
+import { ToastContainer, toast } from "react-toastify";
 
 function DoctorsLocation() {
   const { _id } = useParams();
   const [booking, setBooking] = useState(false);
   const [isChating, setIsChating] = useState(false);
   const [getDoctor, setGetDoctor] = useState(null);
+  const [isbooking, setisbooking] = useState(false);
 
   const allDoctors = useSelector((state) => state.user?.users);
 
   useEffect(() => {
     const doctor = allDoctors?.find((dr) => dr._id === _id);
     setGetDoctor(doctor);
-  }, [_id, allDoctors]);
+    if (booking) {
+      toast("aaaa");
+    }
+  }, [_id, allDoctors, isbooking]);
 
   if (!getDoctor) {
     return (
@@ -91,11 +96,17 @@ function DoctorsLocation() {
             </button>
           </div>
         </div>
-        <div className=" -z-0 lg:w-[60%] lg:h-auto order-2 flex items-center justify-center">
+        <div className="-z-0 lg:w-[90%] lg:h-auto order-2 flex items-center justify-center">
           <PageMap id={_id} />
         </div>
-        <div className="lg:w-[60%] lg:h-auto order-2 flex items-center justify-center"></div>
-        <Booking booking={booking} setBooking={setBooking} drId={_id} />
+        <div className=" z-10">
+          <Booking
+            booking={booking}
+            setbooking={setBooking}
+            drId={_id}
+            setisbooking={setisbooking}
+          />
+        </div>
       </div>
 
       <Chat
@@ -104,6 +115,18 @@ function DoctorsLocation() {
         doctor={getDoctor}
       />
       <Comment _id={_id} />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </div>
   );
 }

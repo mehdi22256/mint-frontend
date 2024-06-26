@@ -60,7 +60,7 @@ function Chat({
       message === ""
         ? ""
         : patientId === undefined
-        ? `${doctor?.firstName || "دكتور"} يكتب الآن...`
+        ? `${doctor?.firstName} يكتب الآن...`
         : `${firstPatient} يكتب الآن...`;
     socket.emit("broadcast_message", data);
   };
@@ -83,7 +83,7 @@ function Chat({
           />
           {patientId === user?.id ? (
             <h1 className="text-xl text-primary font-bold text-left">
-              الدكتور {doctor?.firstName} {doctor?.lastName}
+              {doctor?.firstName} {doctor?.lastName}
             </h1>
           ) : (
             <p>

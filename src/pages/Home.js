@@ -15,12 +15,14 @@ import HomeMap from "../components/HomeMap";
 const Home = () => {
   const navigate = useNavigate();
   const [searching, setSearching] = useState("");
-  const allDoctors = useSelector((state) => state.user?.users);
+  const allDoctors = useSelector((state) => state?.user?.users);
+  console.log("🚀 ~ Home ~ allDoctors:", allDoctors);
 
   const foundDoctor = (e) => {
     e.preventDefault();
     const doctor = allDoctors.find((doctor) => doctor.firstName === searching);
     const doctorId = doctor._id;
+    console.log("🚀 ~ foundDoctor ~ doctorId:", doctorId);
     navigate(`/doctor/${doctorId}`);
   };
 

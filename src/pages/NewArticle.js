@@ -9,6 +9,7 @@ const NewArticle = () => {
   const [timeOfReading, setTimeOfReading] = useState("");
   const [content, setContent] = useState("");
   const [image, setImage] = useState("");
+  console.log("🚀 ~ NewArticle ~ image:", image);
   const [category, setCategory] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -53,6 +54,7 @@ const NewArticle = () => {
             class="hidden"
             onChange={(e) => setImage(e.target.files[0])}
           />
+          {image && <p>تم اضافة صورة </p>}
         </label>
 
         <textarea

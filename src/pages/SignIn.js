@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { signInReducer } from "../store/user/userSlice";
+import Loading from "../components/Loading";
 const SignIn = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -32,7 +33,12 @@ const SignIn = () => {
     );
   };
 
-  if (isLoading) return <p>انتظر...</p>;
+  if (isLoading)
+    return (
+      <div className="flex justify-center items-center">
+        <Loading />
+      </div>
+    );
 
   const handleSignup = (e) => {
     e.preventDefault();

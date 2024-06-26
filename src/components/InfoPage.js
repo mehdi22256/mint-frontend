@@ -52,8 +52,8 @@ const InfoPage = () => {
           />
           <div className="absolute bottom-12 w-full cursor-pointer">
             <label className="cursor-pointer">
-              <p className="absolute bg-secondary opacity-50 w-full h-6 text-center"></p>
-              <p className="text-center text-white font-semibold">
+              <p className="absolute bg-secondary opacity-10 w-full h-6 text-center"></p>
+              <p className="text-center text-black font-semibold">
                 <input
                   type="file"
                   className="hidden"
@@ -63,6 +63,7 @@ const InfoPage = () => {
               </p>
             </label>
           </div>
+          {image && <p className="text-primary">تم اضافة صورة </p>}
         </div>
         <div
           className={`flex ${

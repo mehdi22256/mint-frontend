@@ -149,7 +149,7 @@ function SignUp() {
                   onChange={handleChange}
                   className="w-[97%] p-1 mb-3 text-primary"
                 >
-                  <option disabled value="">
+                  <option disabled hidden selected value="">
                     التخصص
                   </option>
                   <option
@@ -177,7 +177,7 @@ function SignUp() {
                   onChange={handleChange}
                   className="w-[97%] p-1 my-2 text-primary"
                 >
-                  <option disabled value="">
+                  <option disabled hidden selected value="">
                     الجنس
                   </option>
 
@@ -190,7 +190,7 @@ function SignUp() {
                   onChange={handleChange}
                   className="w-[97%] p-1 my-2 text-primary"
                 >
-                  <option disabled value="">
+                  <option disabled hidden selected value="">
                     المحافظة
                   </option>
                   <option value="baghdad">بغداد</option>
@@ -315,7 +315,7 @@ function SignUp() {
                   onChange={handleChange}
                   className="w-[97%] p-1 mb-3 text-primary"
                 >
-                  <option disabled value="">
+                  <option disabled hidden selected value="">
                     التخصص
                   </option>
                   <option
@@ -343,7 +343,7 @@ function SignUp() {
                   onChange={handleChange}
                   className="w-[97%] p-1 mb-3 text-primary"
                 >
-                  <option disabled value="">
+                  <option disabled selected hidden value="">
                     الاختصاص الطبي
                   </option>
 
@@ -358,7 +358,7 @@ function SignUp() {
                   onChange={handleChange}
                   className="w-[97%] p-1 my-2 text-primary"
                 >
-                  <option disabled value="">
+                  <option disabled hidden selected value="">
                     الجنس
                   </option>
 
@@ -371,7 +371,7 @@ function SignUp() {
                   onChange={handleChange}
                   className="w-[97%] p-1 my-2 text-primary"
                 >
-                  <option disabled value="">
+                  <option disabled hidden selected value="">
                     المحافظة
                   </option>
                   <option value="baghdad">بغداد</option>
@@ -415,7 +415,6 @@ function SignUp() {
                   <option value="حي النداء ">حي النداء</option>
                   <option value="حي الامير">حي الامير</option>
                   <option value="حي الانصار">حي الانصار</option>
-
                   <option value="حي الحسين">حي الحسين</option>
                   <option value="حي العسكري">حي العسكري</option>
                   <option value="حي الغدير">حي الغدير</option>
@@ -545,13 +544,16 @@ function SignUp() {
                       class="hidden"
                       onChange={(e) => setcertificate(e.target.files[0])}
                     />
+                    {certificate && <p>تم اضافة صورة </p>}
                   </label>
+
                   <button
                     className="rounded-lg  px-6 py-3 shadow-lg text-xl hover:bg-primary hover:text-white text-primary "
                     onClick={map}
                   >
                     <FaLocationDot className="m-auto" />
                     حدد موقعك الجغرافي
+                    {/* {location && <p>تم تحديد الموقع </p>} */}
                   </button>
                 </div>
               </div>
@@ -564,6 +566,7 @@ function SignUp() {
                   class="hidden"
                   onChange={(e) => setPersonImage(e.target.files[0])}
                 />
+                {personImage && <p>تم اضافة صورة </p>}
               </label>
 
               <button

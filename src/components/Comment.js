@@ -57,7 +57,7 @@ const Comment = ({ _id }) => {
               <div className="w-14 h-14">
                 <img
                   className="w-full h-full rounded-full object-cover"
-                  src={`http://localhost:1000/${comment?.user?.image}`}
+                  src={`${comment?.user?.image}`}
                   alt="user"
                 />
               </div>
@@ -79,7 +79,7 @@ const Comment = ({ _id }) => {
                 <div className="w-14 h-14">
                   <img
                     className="w-full h-full rounded-full object-cover"
-                    src={`http://localhost:1000/${user?.image}`}
+                    src={`${user?.image}`}
                     alt="user"
                   />
                 </div>

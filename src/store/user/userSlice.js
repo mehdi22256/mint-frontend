@@ -32,8 +32,8 @@ export const signup = createAsyncThunk("User/signup", async ({ post }) => {
         },
       }
     );
-
-    return res.data;
+    const data = res.data;
+    localStorage.setItem("Token", data);
   } catch (error) {
     console.error(error);
   }

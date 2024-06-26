@@ -47,7 +47,7 @@ const InfoPage = () => {
         <div className="w-28 h-36 relative m-auto lg:mr-40">
           <img
             className="h-full w-full object-cover"
-            src={`http://localhost:1000/${user?.image}`}
+            src={`${user?.image}`}
             alt="user"
           />
           <div className="absolute bottom-12 w-full cursor-pointer">
@@ -63,7 +63,7 @@ const InfoPage = () => {
               </p>
             </label>
           </div>
-          {image && <p className="text-primary">تم اضافة صورة </p>}
+          {/* {image && <p className="text-primary">تم اضافة صورة </p>} */}
         </div>
         <div
           className={`flex ${

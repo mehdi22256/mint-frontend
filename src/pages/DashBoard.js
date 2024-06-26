@@ -22,7 +22,7 @@ const DashBoard = () => {
           <div className="h-32 w-32">
             <img
               className="w-full h-full rounded-full object-cover object-top"
-              src={`http://localhost:1000/${user?.image}`}
+              src={`${user?.image}`}
               alt="user"
             />
           </div>

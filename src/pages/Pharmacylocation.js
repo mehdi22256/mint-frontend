@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Loading from "../components/Loading";
 import Comment from "../components/Comment";
-
 import PageMap from "../components/PageMap";
 import { useState, useEffect } from "react";
 import Chat from "../components/Chat";

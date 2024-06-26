@@ -3,8 +3,9 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addBooking, getBooking } from "../store/booking/bookingSlice";
+import { toast, ToastContainer } from "react-toastify";
 
-function Booking({ booking, setbooking, drId }) {
+function Booking({ booking, setbooking, drId, setisbooking }) {
   const [value, setValue] = useState(new Date());
   const [date, setDate] = useState();
   const [disabledTimes, setDisabledTimes] = useState([]);
@@ -199,6 +200,7 @@ function Booking({ booking, setbooking, drId }) {
         <button
           onClick={() => {
             setbooking(!booking);
+            setisbooking(true);
           }}
           className="bg-primary border-2 rounded-md border-primary w-96 my- text-xl text-white hover:bg-inherit hover:text-primary hover:border-2 hover:border-primary"
         >

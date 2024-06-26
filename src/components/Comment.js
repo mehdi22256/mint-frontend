@@ -48,7 +48,7 @@ const Comment = ({ _id }) => {
   };
 
   return (
-    <div className="m-auto py-5 px-5 lg:px-26">
+    <div className="m-auto py-5 px-5 lg:px-26 lg:w-full">
       <hr className="my-10" />
       <div className="flex flex-col gap-y-10">
         {comments?.map((comment, index) => (

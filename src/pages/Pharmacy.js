@@ -6,6 +6,7 @@ import Loading from "../components/Loading";
 import { useNavigate } from "react-router-dom";
 
 function Pharmacy() {
+  const navigate = useNavigate();
   const [gov, setGov] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useDispatch();
@@ -18,7 +19,6 @@ function Pharmacy() {
   const userdata = useSelector((state) => state?.user?.pharmacist);
   console.log("🚀 ~ Pharmacy ~ userdata:", userdata);
 
-  // Filtered data based on search term
   const filteredData = userdata?.filter((pharmacist) =>
     `${pharmacist.firstName} ${pharmacist.lastName}`
       .toLowerCase()
@@ -92,6 +92,7 @@ function Pharmacy() {
             {filteredData?.map((pharmacist) => (
               <div
                 key={pharmacist._id}
+                onClick={() => navigate(`/pharmacy/${pharmacist._id}`)}
                 className="w-[220px] h-[220px] bg-secondary rounded-md flex justify-center relative cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-secondary duration-300"
               >
                 <div className="w-[170px] h-[170px] rounded-full overflow-hidden absolute top-[-65px] shadow-lg">

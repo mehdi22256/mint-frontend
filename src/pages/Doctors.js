@@ -105,7 +105,7 @@ function Doctors() {
               >
                 <div className="w-[170px] h-[170px] rounded-full overflow-hidden absolute top-[-65px] shadow-lg">
                   <img
-                    src={`http://localhost:1000/${dr.image}`}
+                    src={`${dr.image}`}
                     alt="xx"
                     className="w-full h-full object-cover object-top "
                   />

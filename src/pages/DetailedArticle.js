@@ -10,7 +10,7 @@ const DetailedArticle = () => {
       <div
         className="flex items-center justify-center m-auto bg-cover bg-center bg-no-repeat h-[480px]"
         style={{
-          backgroundImage: `url(${`http://localhost:1000/${blog?.image}`})`,
+          backgroundImage: `url(${`${blog?.image}`})`,
         }}
       ></div>
       <div className="flex flex-col justify-center items-center px-5 lg:px-10">

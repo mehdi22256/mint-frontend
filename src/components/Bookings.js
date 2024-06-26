@@ -9,7 +9,7 @@ const Bookings = () => {
   );
 
   return (
-    <div>
+    <div className="z-40">
       <div className="flex flex-row items-center justify-around m-auto gap-7 lg:gap-0 text-primary w-max lg:w-auto lg:text-xl font-bold mt-10 lg:pr-32">
         <p>اسم المريض</p>
         <p>جنس المريض</p>

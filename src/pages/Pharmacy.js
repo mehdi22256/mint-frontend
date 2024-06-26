@@ -1,64 +1,68 @@
 import React, { useEffect, useState } from "react";
-import { CiSearch } from "react-icons/ci";
 import { FaLocationDot } from "react-icons/fa6";
 import { useSelector, useDispatch } from "react-redux";
 import { getPharmacist } from "../store/user/userSlice";
-import { getSpecilty } from "../store/specialty/specialtySlice";
 import Loading from "../components/Loading";
 
 function Pharmacy() {
-  const [gov, setgov] = useState(null);
+  const [gov, setGov] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useDispatch();
   const info = { gov };
+
   useEffect(() => {
     dispatch(getPharmacist({ info }));
-  }, []);
+  }, [dispatch, gov]);
+
   const userdata = useSelector((state) => state.user.pharmacist);
-  console.log("🚀 ~ Doctors ~ userdata:", userdata);
+  console.log("🚀 ~ Pharmacy ~ userdata:", userdata);
+
+  // Filtered data based on search term
+  const filteredData = userdata?.filter((pharmacist) =>
+    `${pharmacist.firstName} ${pharmacist.lastName}`
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className="flex justify-center items-center">
       {!userdata ? (
         <div className="h-[80%] m-72 sm:m-3 md:m-12">
-          {" "}
           <Loading />
         </div>
       ) : (
-        <div className="flex flex-col justify-between mx-10  ">
-          <div className="md:flex md:justify-around md:items-center  md:w-[100%]">
-            <div className=" flex justify-center items-center  w-[100%] h-16  md:w-[48%]">
-              <button className=" bg-primary rounded-r-lg border-y-2 border-r-2 flex justify-center items-center w-[50px] h-10">
-                <CiSearch className=" text-white text-xl " />
-              </button>
+        <div className="flex flex-col justify-between mx-10">
+          <div className="md:flex md:justify-around md:items-center md:w-[100%]">
+            <div className="flex justify-center items-center w-[100%] h-16 md:w-[48%]">
               <input
-                className="  rounded-l-lg h-10 border-y-2 border-l-2 w-[70%] md:w-[60%] placeholder:px-6 "
+                className="rounded-lg h-10 border-2 w-[70%] md:w-[60%] placeholder:px-6"
                 type="search"
-                placeholder="ابحث عن الصيدلية "
+                placeholder="ابحث عن الصيدلية"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
-            <div className="flex  justify-between  w-[90%] md:w-[42%] ">
-              <div className="  w-[45%] ">
+            <div className="flex justify-between w-[90%] md:w-[42%]">
+              <div className="w-[45%]">
                 <select
                   name="المحافظة"
-                  className="w-[100%] md:h-10 border-2 rounded-lg  "
-                  onChange={(e) => setgov(e.target.value)}
+                  className="w-[100%] md:h-10 border-2 rounded-lg"
+                  onChange={(e) => setGov(e.target.value)}
                 >
                   <option value="المحافظة" disabled selected hidden>
-                    {" "}
-                    الحي{" "}
+                    الحي
                   </option>
-                  <option value="حي ميسان ">حي ميسان</option>
-                  <option value="حي كندة ">حي كندة</option>
+                  <option value="حي ميسان">حي ميسان</option>
+                  <option value="حي كندة">حي كندة</option>
                   <option value="17 نموز">17 تموز</option>
-                  <option value="حي المتنبي ">حي المتنبي</option>
-                  <option value=" شارع المثنئ ">شارع المثنئ </option>
-                  <option value="شارع الاسكان"> شارع الاسكان</option>
+                  <option value="حي المتنبي">حي المتنبي</option>
+                  <option value="شارع المثنئ">شارع المثنئ</option>
+                  <option value="شارع الاسكان">شارع الاسكان</option>
                   <option value="شارع الاشتراكي">شارع الاشتراكي</option>
                   <option value="ابو صخير">ابو صخير</option>
-                  <option value="حي النداء ">حي النداء</option>
+                  <option value="حي النداء">حي النداء</option>
                   <option value="حي الامير">حي الامير</option>
                   <option value="حي الانصار">حي الانصار</option>
-
                   <option value="حي الحسين">حي الحسين</option>
                   <option value="حي العسكري">حي العسكري</option>
                   <option value="حي الغدير">حي الغدير</option>
@@ -80,26 +84,29 @@ function Pharmacy() {
                   <option value="حي الاسكان">حي الاسكان</option>
                 </select>
               </div>
-              <div className=" w-[45%] "></div>
+              <div className="w-[45%]"></div>
             </div>
           </div>
-          <div className="flex  flex-wrap gap-24 justify-center mt-20 mb-10  ">
-            {userdata?.map((dr) => (
-              <div className="w-[220px] h-[220px] bg-secondary rounded-md flex  justify-center relative  cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-secondary duration-300">
+          <div className="flex flex-wrap gap-24 justify-center mt-20 mb-10">
+            {filteredData?.map((pharmacist) => (
+              <div
+                key={pharmacist._id}
+                className="w-[220px] h-[220px] bg-secondary rounded-md flex justify-center relative cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-secondary duration-300"
+              >
                 <div className="w-[170px] h-[170px] rounded-full overflow-hidden absolute top-[-65px] shadow-lg">
                   <img
-                    src={`http://localhost:1000/${dr.image}`}
-                    alt="xx"
-                    className="w-full h-full object-cover object-top "
+                    src={`http://localhost:1000/${pharmacist.image}`}
+                    alt="Pharmacist"
+                    className="w-full h-full object-cover object-top"
                   />
                 </div>
-                <div className="mt-[55%] ">
+                <div className="mt-[55%]">
                   <h1 className="text-lg font-bold">
-                    {dr.firstName} {dr.lastName}
+                    {pharmacist.firstName} {pharmacist.lastName}
                   </h1>
                   <p className="text-center flex justify-center items-center">
-                    <FaLocationDot className="text-xs mx-1 text-primary " />
-                    {dr.city}
+                    <FaLocationDot className="text-xs mx-1 text-primary" />
+                    {pharmacist.city}
                   </p>
                 </div>
               </div>

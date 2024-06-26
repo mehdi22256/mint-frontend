@@ -48,28 +48,30 @@ function App() {
     <div>
       <Provider store={store}>
         <NavBar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/articles" element={<Articles />} />
-          <Route path="/newarticle" element={<NewArticle />} />
-          <Route path="/articles/:_id" element={<DetailedArticle />} />
-          <Route path="/info" element={<InfoPage />} />
-          <Route path="/bookings" element={<Booking />} />
-          <Route path="/dashboard" element={<DashBoard />}>
-            <Route path="info" element={<InfoPage />} />
-            <Route path="booking" element={<Bookings />} />
-            <Route path="messages" element={<Messages />} />
-            <Route path="newarticle" element={<NewArticle />} />
-          </Route>
-          <Route path="/pharmacy" element={<Pharmacy />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/signin" element={<Signin />} />
-          <Route path="/doctor" element={<Doctors />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/booking" element={<Booking />} />
+        <div className="min-h-[70vh]">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/articles" element={<Articles />} />
+            <Route path="/newarticle" element={<NewArticle />} />
+            <Route path="/articles/:_id" element={<DetailedArticle />} />
+            <Route path="/info" element={<InfoPage />} />
+            <Route path="/bookings" element={<Booking />} />
+            <Route path="/dashboard" element={<DashBoard />}>
+              <Route path="info" element={<InfoPage />} />
+              <Route path="booking" element={<Bookings />} />
+              <Route path="messages" element={<Messages />} />
+              <Route path="newarticle" element={<NewArticle />} />
+            </Route>
+            <Route path="/pharmacy" element={<Pharmacy />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/signin" element={<Signin />} />
+            <Route path="/doctor" element={<Doctors />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/booking" element={<Booking />} />
 
-          <Route path="doctor/:_id" element={<DoctorsLocation />} />
-        </Routes>
+            <Route path="doctor/:_id" element={<DoctorsLocation />} />
+          </Routes>
+        </div>
         <Footer />
       </Provider>
     </div>

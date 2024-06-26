@@ -4,8 +4,7 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Loading from "../components/Loading";
 import Comment from "../components/Comment";
-import Chat from "../components/Chat";
-import { useState } from "react";
+
 import PageMap from "../components/PageMap";
 import { useState, useEffect } from "react";
 import Chat from "../components/Chat";
@@ -27,7 +26,7 @@ function Pharamacypage() {
       <div className="hidden lg:flex  lg:w-[70%] lg:mx-auto lg:bg-secondary pl-1 lg:h-auto lg:py-2 mb-14 lg:rounded-2xl">
         <div className="lg:flex lg:flex-col lg:gap-6 lg:items-center lg:justify-center lg:w-[40%] lg:text-2xl lg:text-center lg:font-medium ">
           <img
-            src={`http://localhost:1000/${getPharmacy?.image}`}
+            src={`${getPharmacy?.image}`}
             className="w-[60%] rounded-2xl"
             alt=""
           />

@@ -6,7 +6,6 @@ import Loading from "../components/Loading";
 import Booking from "../components/Booking";
 import Chat from "../components/Chat";
 import Comment from "../components/Comment";
-import HomeMap from "../components/HomeMap";
 import PageMap from "../components/PageMap";
 
 function DoctorsLocation() {

@@ -3,6 +3,7 @@ import img1 from "../assets/444.png";
 import img2 from "../assets/555.png";
 import mustafa from "../assets/2.jpg";
 import ameer from "../assets/ameerimg.png";
+import moh from "../assets/moh.jpg";
 import { MdEmail } from "react-icons/md";
 
 function About() {
@@ -109,16 +110,16 @@ function About() {
             <div>
               <img
                 className="rounded-[50%] w-44 h-44 object-cover "
-                src={mustafa}
+                src={moh}
                 alt=""
               />
             </div>
             <div className=" text-center leading-10 ">
-              <h1 className="text-[24px] font-bold">Mustafa Ahmed</h1>
+              <h1 className="text-[24px] font-bold">mohamed ali alhelo</h1>
               <h4 className="text-[20px]">full wep stack dev</h4>
               <a
                 className="flex justify-center"
-                href="mailto:mustafa0780500@gmail.com"
+                href="mohamedalhelo909@gmail.com"
               >
                 <MdEmail className="w-20 h-10" />
               </a>

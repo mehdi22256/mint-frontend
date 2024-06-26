@@ -4,7 +4,7 @@ import img2 from "../assets/555.png";
 import mustafa from "../assets/2.jpg";
 import ameer from "../assets/ameerimg.png";
 import { MdEmail } from "react-icons/md";
-
+import mehdi from "../assets/frame.jpg";
 function About() {
   return (
     <div className="w-full flex flex-col items-center justify-center gap-5 md:gap-14 md:pt-12 md:pb-36 ">
@@ -58,10 +58,29 @@ function About() {
             </div>
             <div className=" text-center leading-10 ">
               <h1 className="text-[24px] font-bold">Ameer Ahmed</h1>
-              <h4 className="text-[20px]">full wep stack dev</h4>
+              <h4 className="text-[20px]">Full Stack Developer</h4>
               <a
                 className="flex justify-center"
-                href="ameerahmed202397@gmail.com"
+                href="mailto:ameerahmed202397@gmail.com"
+              >
+                <MdEmail className="w-20 h-10" />
+              </a>
+            </div>
+          </div>
+          <div className="border-2 flex flex-col items-center pt-4 border-[#CEEBD8] bg-[#CEEBD8] w-72 h-[350px] rounded-2xl">
+            <div>
+              <img
+                className="rounded-[50%] w-44 h-44 object-cover "
+                src={mehdi}
+                alt=""
+              />
+            </div>
+            <div className=" text-center leading-10 ">
+              <h1 className="text-[24px] font-bold"> Mehdi Salih</h1>
+              <h4 className="text-[20px]">Full Stack Developer</h4>
+              <a
+                className="flex justify-center"
+                href="mailto:mehdi22256@gmail.com"
               >
                 <MdEmail className="w-20 h-10" />
               </a>
@@ -77,7 +96,7 @@ function About() {
             </div>
             <div className=" text-center leading-10 ">
               <h1 className="text-[24px] font-bold">Mustafa Ahmed</h1>
-              <h4 className="text-[20px]">full wep stack dev</h4>
+              <h4 className="text-[20px]">Full Stack Developer</h4>
               <a
                 className="flex justify-center"
                 href="mailto:mustafa0780500@gmail.com"
@@ -95,27 +114,8 @@ function About() {
               />
             </div>
             <div className=" text-center leading-10 ">
-              <h1 className="text-[24px] font-bold">Mustafa Ahmed</h1>
-              <h4 className="text-[20px]">full wep stack dev</h4>
-              <a
-                className="flex justify-center"
-                href="mailto:mustafa0780500@gmail.com"
-              >
-                <MdEmail className="w-20 h-10" />
-              </a>
-            </div>
-          </div>
-          <div className="border-2 flex flex-col items-center pt-4 border-[#CEEBD8] bg-[#CEEBD8] w-72 h-[350px] rounded-2xl">
-            <div>
-              <img
-                className="rounded-[50%] w-44 h-44 object-cover "
-                src={mustafa}
-                alt=""
-              />
-            </div>
-            <div className=" text-center leading-10 ">
-              <h1 className="text-[24px] font-bold">Mustafa Ahmed</h1>
-              <h4 className="text-[20px]">full wep stack dev</h4>
+              <h1 className="text-[24px] font-bold">Mohammed Ali Zaid</h1>
+              <h4 className="text-[20px]">Full Stack Developer</h4>
               <a
                 className="flex justify-center"
                 href="mailto:mustafa0780500@gmail.com"

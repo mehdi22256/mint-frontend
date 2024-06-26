@@ -31,6 +31,7 @@ import DoctorsLocation from "./pages/DoctorsLocation";
 import { getBooking } from "./store/booking/bookingSlice";
 import Chat from "./components/Chat";
 import Messages from "./components/Messages";
+import NotFound from "./pages/NotFound";
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -52,6 +53,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/articles" element={<Articles />} />
+            <Route path="*" element={<NotFound />} />
             <Route path="/newarticle" element={<NewArticle />} />
             <Route path="/articles/:_id" element={<DetailedArticle />} />
             <Route path="/info" element={<InfoPage />} />

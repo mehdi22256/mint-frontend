@@ -123,10 +123,10 @@ function Booking({ booking, setbooking, drId }) {
   };
 
   const handleBooking = () => {
+    setbooking(!booking);
     dispatch(addBooking({ info, token })).then(() => {
       setRefresh(!refresh);
     });
-    setbooking(!booking);
   };
 
   if (!booking) {
@@ -169,7 +169,12 @@ function Booking({ booking, setbooking, drId }) {
         >
           {resultTimes.map((time) =>
             disabledTimes?.includes(time) ? (
-              <h1>aaaaaaaaaaaaaaaaaa</h1>
+              <span
+                key={time}
+                className="border-2 rounded-lg px-6 py-3 text-sm border-red-500 cursor-not-allowed"
+              >
+                {time}
+              </span>
             ) : (
               <button
                 key={time}

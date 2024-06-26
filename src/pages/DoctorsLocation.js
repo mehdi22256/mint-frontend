@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import Doctorimg from "../assets/pearson.jpg"; // Assuming this is a fallback image
+import Doctorimg from "../assets/pearson.jpg";
 import Loading from "../components/Loading";
 import Booking from "../components/Booking";
 import Chat from "../components/Chat";
 import Comment from "../components/Comment";
+import HomeMap from "../components/HomeMap";
+import PageMap from "../components/PageMap";
 
 function DoctorsLocation() {
   const { _id } = useParams();
@@ -48,6 +50,19 @@ function DoctorsLocation() {
           </p>
           <p className="break-words">أوقات الدوام: حسب المزاج</p>
           <p className="break-words pb-5">رقم الهاتف: 000777555</p>
+          <button
+            onClick={() => setIsChating(!isChating)}
+            className=" bg-primary text-white  px-6 rounded-md ml-3 hover:bg-white hover:text-primary border-2 border-primary "
+          >
+            مراسلة
+          </button>
+          <button
+            onClick={() => setBooking(!booking)}
+            className=" bg-primary text-white  px-6 rounded-md ml-3 hover:bg-white hover:text-primary border-2 border-primary "
+          >
+            حجز
+          </button>
+          <Booking booking={booking} setbooking={setBooking} drId={_id} />
         </div>
       </div>
 
@@ -58,6 +73,8 @@ function DoctorsLocation() {
           className="w-[87%]"
           alt={getDoctor?.firstName}
         />
+      <div className="w-[90%] flex items-center justify-center pb-8 lg:hidden">
+        <PageMap id={_id} />
       </div>
 
       {/* Desktop view */}
@@ -93,8 +110,12 @@ function DoctorsLocation() {
             </button>
           </div>
         </div>
-        <div className="lg:w-[60%] lg:h-auto order-2 flex items-center justify-center"></div>
-        <Booking booking={booking} setBooking={setBooking} drId={_id} />
+        <div className="-z-0 lg:w-[100%] lg:h-auto order-2 flex items-center justify-center">
+          <PageMap id={_id} />
+        </div>
+        <div className="z-10">
+          <Booking booking={booking} setbooking={setBooking} drId={_id} />
+        </div>
       </div>
 
       <Chat

@@ -159,7 +159,7 @@ const Home = () => {
             <div
               className="h-56 bg-cover bg-center bg-no-repeat text-sm rounded-3xl border"
               style={{
-                backgroundImage: `url(${`http://localhost:1000/${blog?.image}`})`,
+                backgroundImage: `url(${`${blog?.image}`})`,
               }}
             ></div>
             <p className="font-[500]">{blog?.title} </p>

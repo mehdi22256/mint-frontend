@@ -97,9 +97,9 @@ function Pharmacy() {
               >
                 <div className="w-[170px] h-[170px] rounded-full overflow-hidden absolute top-[-65px] shadow-lg">
                   <img
-                    src={`http://localhost:1000/${pharmacist.image}`}
-                    alt="Pharmacist"
-                    className="w-full h-full object-cover object-top"
+                    src={`${ph.image}`}
+                    alt="xx"
+                    className="w-full h-full object-cover object-top "
                   />
                 </div>
                 <div className="mt-[55%]">

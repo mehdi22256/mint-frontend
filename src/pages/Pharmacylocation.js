@@ -4,6 +4,9 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Loading from "../components/Loading";
 import Comment from "../components/Comment";
+import Chat from "../components/Chat";
+import { useState } from "react";
+import PageMap from "../components/PageMap";
 import { useState, useEffect } from "react";
 import Chat from "../components/Chat";
 
@@ -50,8 +53,8 @@ function Pharamacypage() {
             مراسلة
           </button>
         </div>
-        <div className="lg:w-[60%] lg:h-auto order-2 flex items-center justify-center">
-          <img src={mapimg} className="w-[100%]" alt="" />
+        <div className=" -z-0 lg:w-[60%] lg:h-auto order-2 flex items-center justify-center">
+          <PageMap id={_id} />
         </div>
       </div>
       <Chat

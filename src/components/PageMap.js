@@ -15,7 +15,7 @@ let DefaultIcon = L.icon({
 
 L.Marker.prototype.options.icon = DefaultIcon;
 
-const HomeMap = () => {
+const PageMap = ({ id }) => {
   const [position, setPosition] = useState([51.505, -0.09]);
   const [userPosition, setUserPosition] = useState(null);
 
@@ -40,10 +40,11 @@ const HomeMap = () => {
   }, []);
 
   const location = useSelector((state) => state.location.data);
-  const mapLoca = location?.map((loc) => [loc.latitude, loc.longitude]);
-  
+  const AllLocation = location?.filter((loc) => loc.user == id);
+  console.log("🚀 ~ PageMap ~ AllLocation:", AllLocation);
+
   return (
-    <div className="z-30">
+    <div className=" w-full">
       {userPosition ? (
         <MapContainer
           center={userPosition || position}
@@ -55,15 +56,7 @@ const HomeMap = () => {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
 
-          {userPosition ? (
-            <Marker position={userPosition}>
-              <Popup>Your location.</Popup>
-            </Marker>
-          ) : (
-            <div>يوجد خطأ</div>
-          )}
-
-          {location?.map((loc) => (
+          {AllLocation?.map((loc) => (
             <Marker position={[loc.latitude, loc.longitude]}>
               <Popup>{loc.user}</Popup>
             </Marker>
@@ -76,4 +69,4 @@ const HomeMap = () => {
   );
 };
 
-export default HomeMap;
+export default PageMap;

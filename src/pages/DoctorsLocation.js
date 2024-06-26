@@ -96,6 +96,7 @@ function DoctorsLocation() {
             </button>
           </div>
         </div>
+<<<<<<< HEAD
         <div className="-z-0 lg:w-[90%] lg:h-auto order-2 flex items-center justify-center">
           <PageMap id={_id} />
         </div>
@@ -107,6 +108,13 @@ function DoctorsLocation() {
             setisbooking={setisbooking}
           />
         </div>
+=======
+        <div className=" -z-0 lg:w-[60%] lg:h-auto order-2 flex items-center justify-center">
+          <PageMap id={_id} />
+        </div>
+        <div className="lg:w-[60%] lg:h-auto order-2 flex items-center justify-center"></div>
+        <Booking booking={booking} setBooking={setBooking} drId={_id} />
+>>>>>>> bb11010a8aa049d3fb6e8010cf9830a146031df0
       </div>
 
       <Chat
@@ -115,6 +123,7 @@ function DoctorsLocation() {
         doctor={getDoctor}
       />
       <Comment _id={_id} />
+<<<<<<< HEAD
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -127,6 +136,8 @@ function DoctorsLocation() {
         pauseOnHover
         theme="dark"
       />
+=======
+>>>>>>> bb11010a8aa049d3fb6e8010cf9830a146031df0
     </div>
   );
 }

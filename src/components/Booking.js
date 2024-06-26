@@ -13,8 +13,7 @@ function Booking({ booking, setbooking, drId, setisbooking }) {
 
   const dispatch = useDispatch();
   const bookingDate = useSelector((state) => state.booking.data);
-  const drfilter = bookingDate.filter((dr) => dr.doctor === drId);
-  console.log("🚀 ~ Booking ~ drfilter:", drfilter);
+  const drfilter = bookingDate?.filter((dr) => dr.doctor === drId);
 
   const formatDate = (date) => {
     const day = date.getDate();

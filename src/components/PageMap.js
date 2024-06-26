@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
-
 import icon from "leaflet/dist/images/marker-icon.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
 import { useDispatch, useSelector } from "react-redux";
@@ -41,7 +40,6 @@ const PageMap = ({ id }) => {
 
   const location = useSelector((state) => state.location.data);
   const AllLocation = location?.filter((loc) => loc.user == id);
-  console.log("🚀 ~ PageMap ~ AllLocation:", AllLocation);
 
   return (
     <div className=" w-full">

@@ -36,11 +36,7 @@ function DoctorsLocation() {
           <img
             className="w-[50%] mx-auto rounded-2xl"
             alt={getDoctor?.firstName}
-            src={
-              getDoctor?.image
-                ? `http://localhost:1000/${getDoctor?.image}`
-                : Doctorimg
-            }
+            src={getDoctor?.image ? `${getDoctor?.image}` : Doctorimg}
           />
         </div>
         <div className="w-full text-center text-lg h-[60%] pt-4 text-black font-semibold leading-[50px]">
@@ -58,11 +54,7 @@ function DoctorsLocation() {
       {/* Mobile image */}
       <div className="w-full flex items-center justify-center pb-8 lg:hidden">
         <img
-          src={
-            getDoctor?.image
-              ? `http://localhost:1000/${getDoctor?.image}`
-              : Doctorimg
-          }
+          src={getDoctor?.image ? `${getDoctor?.image}` : Doctorimg}
           className="w-[87%]"
           alt={getDoctor?.firstName}
         />
@@ -72,11 +64,7 @@ function DoctorsLocation() {
       <div className="hidden lg:flex lg:w-[70%] lg:mx-auto lg:bg-secondary pl-1 lg:h-auto lg:py-2 mb-14 lg:rounded-2xl">
         <div className="lg:flex lg:flex-col lg:gap-6 lg:items-center lg:justify-center lg:w-[40%] lg:text-2xl lg:text-center lg:font-medium ">
           <img
-            src={
-              getDoctor?.image
-                ? `http://localhost:1000/${getDoctor?.image}`
-                : Doctorimg
-            }
+            src={getDoctor?.image ? `${getDoctor?.image}` : Doctorimg}
             className="w-[60%] rounded-2xl"
             alt={getDoctor?.firstName}
           />

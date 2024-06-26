@@ -14,6 +14,7 @@ function DoctorsLocation() {
   const [booking, setBooking] = useState(false);
   const [isChating, setIsChating] = useState(false);
   const [getDoctor, setGetDoctor] = useState(null);
+  console.log("🚀 ~ DoctorsLocation ~ getDoctor:", getDoctor);
 
   const allDoctors = useSelector((state) => state.user?.users);
 
@@ -32,7 +33,6 @@ function DoctorsLocation() {
 
   return (
     <div className="h-full w-full pt-8 gap-5 flex flex-col items-center justify-center">
-      {/* Mobile view */}
       <div className="w-[90%] h-auto pt-2 bg-secondary rounded-2xl flex flex-col items-center justify-center lg:hidden">
         <div className="w-full h-[40%]">
           <img
@@ -66,7 +66,6 @@ function DoctorsLocation() {
         </div>
       </div>
 
-      {/* Mobile image */}
       <div className="w-full flex items-center justify-center pb-8 lg:hidden">
         <img
           src={getDoctor?.image ? `${getDoctor?.image}` : Doctorimg}
@@ -77,7 +76,6 @@ function DoctorsLocation() {
           <PageMap id={_id} />
         </div>
 
-        {/* Desktop view */}
         <div className="hidden lg:flex lg:w-[70%] lg:mx-auto lg:bg-secondary pl-1 lg:h-auto lg:py-2 mb-14 lg:rounded-2xl">
           <div className="lg:flex lg:flex-col lg:gap-6 lg:items-center lg:justify-center lg:w-[40%] lg:text-2xl lg:text-center lg:font-medium ">
             <img

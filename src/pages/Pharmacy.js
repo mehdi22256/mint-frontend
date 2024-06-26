@@ -3,6 +3,7 @@ import { FaLocationDot } from "react-icons/fa6";
 import { useSelector, useDispatch } from "react-redux";
 import { getPharmacist } from "../store/user/userSlice";
 import Loading from "../components/Loading";
+import { useNavigate } from "react-router-dom";
 
 function Pharmacy() {
   const [gov, setGov] = useState(null);
@@ -14,7 +15,7 @@ function Pharmacy() {
     dispatch(getPharmacist({ info }));
   }, [dispatch, gov]);
 
-  const userdata = useSelector((state) => state.user.pharmacist);
+  const userdata = useSelector((state) => state?.user?.pharmacist);
   console.log("🚀 ~ Pharmacy ~ userdata:", userdata);
 
   // Filtered data based on search term
@@ -25,7 +26,7 @@ function Pharmacy() {
   );
 
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex justify-center items-center ">
       {!userdata ? (
         <div className="h-[80%] m-72 sm:m-3 md:m-12">
           <Loading />

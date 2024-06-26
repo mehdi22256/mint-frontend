@@ -68,10 +68,11 @@ function App() {
             <Route path="/doctor" element={<Doctors />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/booking" element={<Booking />} />
-
             <Route path="doctor/:_id" element={<DoctorsLocation />} />
+            <Route path="pharmacy/:_id" element={<Pharamacylocation />} />
           </Routes>
         </div>
+
         <Footer />
       </Provider>
     </div>

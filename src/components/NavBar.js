@@ -28,7 +28,7 @@ const NavBar = () => {
             <Link to={"/articles"}>المقالات</Link>
           </li>
           <li className="cursor-pointer hover:underline">
-            <Link to={"/Pharmacy"}>الصيدليات</Link>
+            <Link to={"/pharmacy"}>الصيدليات</Link>
           </li>
           <li className="cursor-pointer hover:underline">
             <Link to={"/doctor"}>الاطباء</Link>

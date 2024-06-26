@@ -13,6 +13,7 @@ function Doctors() {
   const [specialty, setSpecialty] = useState(null);
   const [city, setCityValue] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
+
   const dispatch = useDispatch();
 
   useEffect(() => {

@@ -124,7 +124,7 @@ export const getPharmacist = createAsyncThunk(
         info
       );
       const data = res.data;
-
+      // console.log({ info });
       return data;
     } catch (error) {
       return console.log(error);
@@ -252,7 +252,7 @@ const userSlice = createSlice({
     // get pharmacist data
     builder
       .addCase(getPharmacist.pending, (state) => {
-        state.isLoading = true;
+        state.isLoading = false;
         state.error = null;
       })
       .addCase(getPharmacist.fulfilled, (state, action) => {

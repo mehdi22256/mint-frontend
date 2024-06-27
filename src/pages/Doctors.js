@@ -42,11 +42,11 @@ function Doctors() {
           <Loading />
         </div>
       ) : (
-        <div className="flex flex-col justify-between mx-10">
-          <div className="md:flex md:justify-around md:items-center md:w-[100%]">
-            <div className="flex justify-center items-center w-[100%] h-16 md:w-[48%]">
+        <div className="flex flex-col justify-between mx-10 w-screen">
+          <div className="flex flex-col lg:flex-row justify-around items-center  md:w-[100%]">
+            <div className="flex justify-center items-center h-16 w-[90%] md:w-[48%]">
               <input
-                className="rounded-lg h-10 border-2 w-[70%] md:w-[60%] placeholder:px-6"
+                className="rounded-lg h-10 border-2 w-full md:w-[60%] placeholder:px-6"
                 type="search"
                 placeholder="ابحث عن اسم الدكتور"
                 value={searchTerm}

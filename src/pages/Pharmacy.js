@@ -32,7 +32,7 @@ function Pharmacy() {
           <Loading />
         </div>
       ) : (
-        <div className="flex flex-col justify-between mx-10">
+        <div className="flex flex-col justify-between mx-10 w-screen">
           <div className="md:flex md:justify-around md:items-center md:w-[100%]">
             <div className="flex justify-center items-center w-[100%] h-16 md:w-[48%]">
               <input

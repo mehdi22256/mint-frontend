@@ -45,15 +45,15 @@ const NavBar = () => {
 
       {/* mobile */}
       <nav>
-        <div className="lg:hidden relative flex flex-row-reverse justify-between px-3 pt-5 items-center h-10">
-          <div>
+        <div className="lg:hidden relative flex flex-row justify-between px-3 pt-5 items-center h-10">
+          {/* <div>
             <img
               src={searching}
               alt="search"
               onClick={() => setIsSearch(!isSearch)}
               className="w-7 cursor-pointer "
             />
-          </div>
+          </div> */}
           <div>
             <label class="hamburger">
               <input
@@ -68,14 +68,14 @@ const NavBar = () => {
                 <path class="line" d="M7 16 27 16"></path>
               </svg>
             </label>
-            <input
+            {/* <input
               id="searchMobile"
               type="search"
               placeholder="بحث..."
               className={`${
                 isSearch ? `flex` : `hidden`
               }  absolute left-12 top-3 bg-white w-[250px] h-9 rounded-lg p-2`}
-            />
+            /> */}
           </div>
         </div>
 
@@ -106,7 +106,7 @@ const NavBar = () => {
                 onClick={() => setIsBurgerOpen(!isBurgerOpen)}
                 className="cursor-pointer hover:bg-primary hover:text-black font-semibold py-5 w-screen "
               >
-                <Link to={"/doctors"}>الاطباء</Link>
+                <Link to={"/doctor"}>الاطباء</Link>
               </li>
 
               <li

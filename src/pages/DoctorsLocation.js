@@ -64,7 +64,7 @@ function DoctorsLocation() {
       </div>
 
       {/* Desktop view */}
-      <div className="hidden  lg:flex lg:w-[70%] lg:mx-auto lg:bg-secondary pl-1 lg:h-auto lg:py-2 mb-14 lg:rounded-2xl">
+      <div className="hidden lg:flex lg:w-[70%] lg:mx-auto lg:bg-secondary pl-1 lg:h-auto lg:py-2 mb-14 lg:rounded-2xl">
         <div className="lg:flex lg:flex-col lg:gap-6 lg:items-center lg:justify-center lg:w-[40%] lg:text-2xl lg:text-center lg:font-medium ">
           <img
             src={getDoctor?.image ? `${getDoctor?.image}` : Doctorimg}

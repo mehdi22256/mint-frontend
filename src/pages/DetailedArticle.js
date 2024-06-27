@@ -17,8 +17,8 @@ const DetailedArticle = () => {
         <div className="flex flex-row w-max gap-x-2 lg:gap-x-3 ">
           <p className="text-slate-400 text-sm lg:text-xl ">
             {`${blog?.user?.role?.name === "doctor" ? `الدكتور` : `الصيدلي`} ${
-              blog?.user.firstName
-            } ${blog?.user.lastName}`}
+              blog?.user?.firstName
+            } ${blog?.user?.lastName}`}
           </p>
           <p className="text-slate-400 text-sm lg:text-xl ">.</p>
           <p className="text-slate-400 text-sm lg:text-xl ">{blog?.date}</p>

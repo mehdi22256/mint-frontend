@@ -71,7 +71,7 @@ const SignIn = () => {
               placeholder="كلمة المرور"
               type="password"
             />
-            <div className="flex flex-row justify-between items-center gap-32 mb-8">
+            <div className="flex flex-row justify-between pl-64 lg:pl-0 items-center gap-32 mb-8">
               <label
                 htmlFor="checkbox"
                 className="text-primary cursor-pointer hover:underline"

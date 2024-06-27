@@ -90,15 +90,22 @@ const LogOut = () => {
       {/* mobile */}
 
       <div className="lg:hidden  divide-y-2 divide-black">
-        <li className="cursor-pointer hover:bg-primary hover:text-black font-semibold py-5  w-screen ">
+        <li
+          onClick={() => setIsClicked(!isClicked)}
+          className="cursor-pointer hover:bg-primary hover:text-black font-semibold py-5  w-screen "
+        >
           <Link to={"/info"}>معلومات الحساب</Link>
         </li>
-        <li className="cursor-pointer hover:bg-primary hover:text-black font-semibold py-5  w-screen ">
-          <Link to={"/newarticle"}>انشاء مقال</Link>
-        </li>
-        <li className="cursor-pointer hover:bg-primary hover:text-black font-semibold py-5  w-screen">
-          <Link to={"/booking"}>الحجوزات</Link>
-        </li>
+        {user?.role !== "665de38be9ef4cb7062684e2" ? (
+          <li className="cursor-pointer hover:bg-primary hover:text-black font-semibold py-5 w-screen">
+            <Link to={"/newarticle"}>انشاء مقال</Link>
+          </li>
+        ) : null}
+        {user?.role !== "665de38be9ef4cb7062684e2" ? (
+          <li className="cursor-pointer hover:bg-primary hover:text-black font-semibold py-5  w-screen">
+            <Link to={"/booking"}>الحجوزات</Link>
+          </li>
+        ) : null}
         <li
           onClick={logOut}
           className="cursor-pointer hover:bg-primary hover:text-black font-semibold py-5  w-screen"

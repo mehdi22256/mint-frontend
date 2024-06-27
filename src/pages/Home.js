@@ -20,10 +20,15 @@ const Home = () => {
 
   const foundDoctor = (e) => {
     e.preventDefault();
-    const doctor = allDoctors.find((doctor) => doctor.firstName === searching);
-    const doctorId = doctor._id;
-    console.log("🚀 ~ foundDoctor ~ doctorId:", doctorId);
-    navigate(`/doctor/${doctorId}`);
+    const doctor = allDoctors?.find((doctor) => {
+      return `${doctor.firstName} ${doctor.lastName}` === searching;
+    });
+    if (!doctor) {
+      navigate("*");
+    } else {
+      const doctorId = doctor?._id;
+      navigate(`/doctor/${doctorId}`);
+    }
   };
 
   const blogs = useSelector((state) => state?.blog?.data);

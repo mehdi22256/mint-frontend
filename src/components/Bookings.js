@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 
 const Bookings = () => {
-  const bookings = useSelector((state) => state.booking.data);
-  const user = useSelector((state) => state.user.data);
+  const bookings = useSelector((state) => state?.booking?.data);
+  const user = useSelector((state) => state?.user?.data);
 
   const bookingFilter = bookings?.filter(
     (drbooking) => drbooking.doctor === user.id

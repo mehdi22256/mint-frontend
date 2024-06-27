@@ -14,13 +14,11 @@ function Chat({
   lastPatient,
   patientId,
 }) {
-  console.log("🚀 ~ firstPatient:", firstPatient);
-  console.log("🚀 ~ patientId:", patientId);
   const dispatch = useDispatch();
   const user = useSelector((state) => state?.user?.data);
   const users = patientId ? [patientId, user?.id] : [user?.id, doctor?._id];
   const room = users.join("-");
-  console.log("🚀 ~ Chat ~ room:", room);
+  console.log("🚀 ~ room:", room);
 
   const [message, setMessage] = useState("");
   const [broad, setBroad] = useState("");

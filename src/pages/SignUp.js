@@ -11,6 +11,15 @@ import { useNavigate } from "react-router-dom";
 import { getSpecilty } from "../store/specialty/specialtySlice";
 
 function SignUp() {
+  const navigate = useNavigate();
+
+  const isLogged = useSelector((state) => state?.user?.isLogged);
+
+  useEffect(() => {
+    if (isLogged) {
+      navigate("/");
+    }
+  }, [isLogged, navigate]);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -72,7 +81,6 @@ function SignUp() {
       dispatch(signup({ post }));
     }
   };
-  const navigate = useNavigate();
   const handleSignin = (e) => {
     e.preventDefault();
     navigate("/signin");

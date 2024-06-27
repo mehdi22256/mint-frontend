@@ -39,14 +39,14 @@ const LogOut = () => {
           <div
             id="logOut"
             className={`absolute top-[68px] rounded-lg border-[0.5px] border-black -left-10 ${
-              user.role === "665de38be9ef4cb7062684e2" ? `h-56` : `h-72`
+              user?.role === "665de38be9ef4cb7062684e2" ? `h-56` : `h-72`
             } w-56 bg-secondary text-black`}
           >
             <div className="flex flex-row justify-center items-center gap-5 pt-2">
               <div className=" w-16 h-16">
                 <img
                   className="rounded-full w-full h-full object-cover"
-                  src={`http://localhost:1000/${user?.image}`}
+                  src={`${user?.image}`}
                   alt="customer"
                 />
               </div>
@@ -65,7 +65,7 @@ const LogOut = () => {
                 <p> الصفحة الرئيسية</p>
               </div>
 
-              {user.role === "665de38be9ef4cb7062684e2" ? null : (
+              {user?.role === "665de38be9ef4cb7062684e2" ? null : (
                 <div
                   onClick={Article}
                   className="flex flex-row w-full h-full py-1 pl-6 justify-center items-center gap-5 hover:bg-primary cursor-pointer"
@@ -90,15 +90,22 @@ const LogOut = () => {
       {/* mobile */}
 
       <div className="lg:hidden  divide-y-2 divide-black">
-        <li className="cursor-pointer hover:bg-primary hover:text-black font-semibold py-5  w-screen ">
+        <li
+          onClick={() => setIsClicked(!isClicked)}
+          className="cursor-pointer hover:bg-primary hover:text-black font-semibold py-5  w-screen "
+        >
           <Link to={"/info"}>معلومات الحساب</Link>
         </li>
-        <li className="cursor-pointer hover:bg-primary hover:text-black font-semibold py-5  w-screen ">
-          <Link to={"/newarticle"}>انشاء مقال</Link>
-        </li>
-        <li className="cursor-pointer hover:bg-primary hover:text-black font-semibold py-5  w-screen">
-          <Link to={"/booking"}>الحجوزات</Link>
-        </li>
+        {user?.role !== "665de38be9ef4cb7062684e2" ? (
+          <li className="cursor-pointer hover:bg-primary hover:text-black font-semibold py-5 w-screen">
+            <Link to={"/newarticle"}>انشاء مقال</Link>
+          </li>
+        ) : null}
+        {user?.role !== "665de38be9ef4cb7062684e2" ? (
+          <li className="cursor-pointer hover:bg-primary hover:text-black font-semibold py-5  w-screen">
+            <Link to={"/booking"}>الحجوزات</Link>
+          </li>
+        ) : null}
         <li
           onClick={logOut}
           className="cursor-pointer hover:bg-primary hover:text-black font-semibold py-5  w-screen"

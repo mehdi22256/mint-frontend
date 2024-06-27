@@ -42,7 +42,6 @@ function App() {
     dispatch(getComments());
     dispatch(getBooking());
     dispatch(fetchChats());
-    // dispatch(fetchChatRooms());
   }, [dispatch]);
 
   return (

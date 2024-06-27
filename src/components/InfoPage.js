@@ -63,7 +63,7 @@ const InfoPage = () => {
               </p>
             </label>
           </div>
-          {image && <p className="text-primary">تم اضافة صورة </p>}
+          {/* {image && <p className="text-primary">تم اضافة صورة </p>} */}
         </div>
         <div
           className={`flex ${
@@ -134,12 +134,12 @@ const InfoPage = () => {
           {user?.role === "665de38be9ef4cb7062684e2" ? null : (
             <div className="flex flex-col gap-3">
               <p className="font-bold text-xl">اوقات الدوام :</p>
-              <div className="flex flex-row gap-5">
+              <div className="flex flex-col lg:flex-row gap-5">
                 <div className="flex flex-row items-center gap-2">
                   <label htmlFor="من">من</label>
                   <input
                     name="من"
-                    className="border-2 border-black h-10 pr-2 w-80 lg:w-72"
+                    className="border-2 border-black h-10 pr-2 lg:w-72"
                     type="text"
                     value={startTime}
                     onChange={(e) => setStartTime(e.target.value)}
@@ -149,7 +149,7 @@ const InfoPage = () => {
                   <label htmlFor="الى">الى</label>
                   <input
                     name="الى"
-                    className="border-2 border-black h-10 pr-2 w-80 lg:w-72"
+                    className="border-2 border-black h-10 pr-2 lg:w-72"
                     type="text"
                     value={endTime}
                     onChange={(e) => setEndTime(e.target.value)}

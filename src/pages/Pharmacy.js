@@ -7,10 +7,15 @@ import { useNavigate } from "react-router-dom";
 
 function Pharmacy() {
   const navigate = useNavigate();
-  const [gov, setGov] = useState(null);
+  const [gov, setGov] = useState("null");
   const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useDispatch();
-  const info = { gov };
+  const handleChange = (event) => {
+    const value = event.target.value === "null" ? null : event.target.value;
+    setGov(value);
+    console.log(value); // سيتحول إلى null عند اختيار "الكل"
+  };
+  let info = { governorate: gov };
 
   useEffect(() => {
     dispatch(getPharmacist({ info }));
@@ -40,7 +45,7 @@ function Pharmacy() {
                 type="search"
                 placeholder="ابحث عن الصيدلية"
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={handleChange}
               />
             </div>
             <div className="flex justify-between w-[90%] md:w-[42%]">
@@ -53,6 +58,8 @@ function Pharmacy() {
                   <option value="المحافظة" disabled selected hidden>
                     الحي
                   </option>
+                  <option value="null">الكل</option>
+
                   <option value="حي ميسان">حي ميسان</option>
                   <option value="حي كندة">حي كندة</option>
                   <option value="17 نموز">17 تموز</option>

@@ -7,6 +7,14 @@ import icon from "leaflet/dist/images/marker-icon.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
 import { useDispatch, useSelector } from "react-redux";
 import { getLocation } from "../store/location/locationSlice";
+const customIcon = L.icon({
+  iconUrl: require("../assets/MapPlaceholder.png"),
+  iconSize: [40, 33],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
+  shadowSize: [41, 41],
+});
 
 let DefaultIcon = L.icon({
   iconUrl: icon,
@@ -40,14 +48,17 @@ const HomeMap = () => {
   }, []);
 
   const location = useSelector((state) => state.location.data);
+  const locfilter = location?.filter(
+    (ph) => ph.user.role == "665de37ce9ef4cb7062684e0"
+  );
+  console.log("🚀 ~ HomeMap ~ locfilter:", locfilter);
   const mapLoca = location?.map((loc) => [loc.latitude, loc.longitude]);
-  console.log("🚀 ~ HomeMap ~ mapLoca:", mapLoca);
   return (
     <div className="z-30">
       {userPosition ? (
         <MapContainer
           center={userPosition || position}
-          zoom={13}
+          zoom={20}
           style={{ height: "400px", width: "100%" }}
         >
           <TileLayer
@@ -56,16 +67,18 @@ const HomeMap = () => {
           />
 
           {userPosition ? (
-            <Marker position={userPosition}>
-              <Popup>Your location.</Popup>
+            <Marker position={userPosition} icon={customIcon}>
+              <Popup>موفعك الحالي</Popup>
             </Marker>
           ) : (
             <div>يوجد خطأ</div>
           )}
 
-          {location?.map((loc) => (
+          {locfilter?.map((loc) => (
             <Marker position={[loc.latitude, loc.longitude]}>
-              <Popup>{loc.user}</Popup>
+              <Popup keepInView>
+                {loc.user.firstName}:{loc.user.lastName}
+              </Popup>
             </Marker>
           ))}
         </MapContainer>

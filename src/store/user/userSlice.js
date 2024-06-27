@@ -106,6 +106,7 @@ export const getDoctor = createAsyncThunk(
   "User/getDoctor",
   async ({ info }) => {
     try {
+      console.log("🚀 ~ info:", info);
       const res = await axios.post("http://localhost:1000/user/doctor", info);
       const data = res.data;
 
@@ -119,12 +120,12 @@ export const getPharmacist = createAsyncThunk(
   "User/getPharmacist",
   async ({ info }) => {
     try {
-      const res = await axios.get(
+      console.log(info);
+      const res = await axios.post(
         "http://localhost:1000/user/pharmacist",
         info
       );
       const data = res.data;
-      // console.log({ info });
       return data;
     } catch (error) {
       return console.log(error);

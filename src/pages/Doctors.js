@@ -10,8 +10,8 @@ function Doctors() {
   const specialtyData = useSelector((state) => state.specilty.data);
   const navigate = useNavigate();
 
-  const [specialty, setSpecialty] = useState(null);
-  const [city, setCityValue] = useState(null);
+  const [specialty, setSpecialty] = useState("null");
+  const [city, setCityValue] = useState("null");
   const [searchTerm, setSearchTerm] = useState("");
 
   const dispatch = useDispatch();
@@ -27,13 +27,13 @@ function Doctors() {
   }, [city, specialty, dispatch]);
 
   const userdata = useSelector((state) => state.user.doctors);
-  console.log("🚀 ~ Doctors ~ userdata:", userdata);
 
   const filteredData = userdata?.filter((dr) =>
     `${dr.firstName} ${dr.lastName}`
       .toLowerCase()
       .startsWith(searchTerm.toLowerCase())
   );
+
 
   return (
     <div className="flex justify-center items-center ">
@@ -63,6 +63,8 @@ function Doctors() {
                   <option value="المحافظة" disabled hidden selected>
                     المحافظة
                   </option>
+                  <option value="null">الكل</option>
+
                   <option value="baghdad">بغداد</option>
                   <option value="basra">البصرة</option>
                   <option value="kirkuk">كركوك</option>
@@ -91,6 +93,8 @@ function Doctors() {
                   <option value="التخصص" disabled hidden selected>
                     التخصص
                   </option>
+                  <option value="null">الكل</option>
+
                   {specialtyData?.map((specialty) => (
                     <option value={specialty._id} key={specialty._id}>
                       {specialty.name}
@@ -121,6 +125,9 @@ function Doctors() {
                   <p className="text-center flex justify-center items-center">
                     <FaLocationDot className="text-xs mx-1 text-primary" />
                     {dr.city}
+                  </p>
+                  <p className="text-center flex justify-center items-center">
+                    <FaLocationDot className="text-xs mx-1 text-primary" />
                   </p>
                 </div>
               </div>

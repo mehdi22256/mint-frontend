@@ -39,11 +39,13 @@ const PageMap = ({ id }) => {
   }, []);
 
   const location = useSelector((state) => state.location.data);
-  const AllLocation = location?.filter((loc) => loc.user == id);
+  const AllLocation = location?.filter((loc) => loc.user._id == id);
+  console.log("🚀 ~ PageMap ~ AllLocation:", AllLocation);
 
   return (
     <div className=" w-full">
       {userPosition ? (
+        
         <MapContainer
           center={userPosition || position}
           zoom={13}
@@ -56,7 +58,9 @@ const PageMap = ({ id }) => {
 
           {AllLocation?.map((loc) => (
             <Marker position={[loc.latitude, loc.longitude]}>
-              <Popup>{loc.user}</Popup>
+              <Popup>
+                {loc.user.firstName} {loc.user.lastName}
+              </Popup>
             </Marker>
           ))}
         </MapContainer>

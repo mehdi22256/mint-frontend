@@ -32,7 +32,7 @@ const LogOut = () => {
         <img
           onClick={() => setIsClicked(!isClicked)}
           className="w-full h-full rounded-full  cursor-pointer object-cover object-top"
-          src={`http://localhost:1000/${user?.image}`}
+          src={`${user?.image}`}
           alt="customer"
         />
         {isClicked && (

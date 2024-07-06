@@ -72,7 +72,7 @@ function Chat({
   }
 
   return (
-    <div className="fixed bottom-0 left-5 w-96 flex-col items-center justify-center bg-gray-100 rounded-xl">
+    <div className="fixed bottom-0 left-5 w-80 lg:w-96 flex-col items-center justify-center bg-gray-100 rounded-xl">
       <div className="bg-white p-3 rounded shadow-md w-full max-w-md">
         <div className="flex flex-row items-center justify-between mb-2">
           <IoCloseOutline
